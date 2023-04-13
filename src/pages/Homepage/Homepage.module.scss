@@ -1,0 +1,69 @@
+.Homepage {
+  background-color: rgb(18, 19, 21);
+  padding-bottom: 10vh;
+  .main_1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    column-gap: 48px;
+    row-gap: 48px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 30vh;
+    .framer_1 {
+      h1 {
+        font-size: 80px;
+        box-sizing: border-box;
+        color: rgb(255, 255, 255);
+        font-weight: 600;
+        letter-spacing: normal;
+        text-align: left;
+        line-height: 70px;
+        word-break: break-word;
+      }
+    }
+    .framer_2 {
+      h3 {
+        font-size: 22px;
+        box-sizing: border-box;
+        color: rgb(161, 161, 168);
+        font-weight: 500;
+        letter-spacing: normal;
+        text-align: left;
+        letter-spacing: normal;
+        text-align: left;
+        line-height: 25px;
+      }
+    }
+
+    .button_ct {
+      display: block;
+      button {
+        font-weight: 600;
+        margin-right: 15px;
+        padding: 1.3rem;
+        border-radius: 10px;
+        border: none;
+        background-color: #4bb6b7;
+        color: rgb(0, 0, 0);
+      }
+    }
+  }
+  .main_2 {
+    @extend .main_1;
+    padding-top: 10vh;
+    .img_ct {
+      border: none;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        
+        width: 80%;
+        height: auto;
+        border-radius: 10px;
+      }
+    }
+  }
+}

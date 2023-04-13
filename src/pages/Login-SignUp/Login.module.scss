@@ -1,20 +1,12 @@
-* {
-    box-sizing: border-box;
-    
-  }
-  
-  body {
-    display: flex;
-    background-color: #f6f5f7;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-    
-    overflow: hidden;
-    height: 100vh;
-  }
-  
+.login_body {
+  display: flex;
+  background-color: rgb(18, 19, 21);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 5rem;
+  overflow: hidden;
+  height: 100vh;
   h1 {
     font-weight: 700;
     letter-spacing: -1.5px;
@@ -61,25 +53,26 @@
     height: 50px;
     align-items: center;
     justify-content: space-around;
+    .checkbox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    input {
+      accent-color: #333;
+      width: 12px;
+      height: 12px;
+    }
+    label {
+      font-size: 14px;
+      user-select: none;
+      padding-left: 5px;
+    }
   }
   
-  .content .checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   
-  .content input {
-    accent-color: #333;
-    width: 12px;
-    height: 12px;
-  }
   
-  .content label {
-    font-size: 14px;
-    user-select: none;
-    padding-left: 5px;
-  }
+ 
   
   button {
     position: relative;
@@ -94,6 +87,8 @@
     letter-spacing: 1px;
     text-transform: capitalize;
     transition: 0.3s ease-in-out;
+
+    
   }
   
   button:hover {
@@ -114,26 +109,26 @@
     color: #fff;
   }
   
-  button.ghost i{
+  button.ghost i {
     position: absolute;
     opacity: 0;
     transition: 0.3s ease-in-out;
   }
   
-  button.ghost i.register{
+  button.ghost i.register {
     right: 70px;
   }
   
-  button.ghost i.login{
+  button.ghost i.login {
     left: 70px;
   }
   
-  button.ghost:hover i.register{
+  button.ghost:hover i.register {
     right: 40px;
     opacity: 1;
   }
   
-  button.ghost:hover i.login{
+  button.ghost:hover i.login {
     left: 40px;
     opacity: 1;
   }
@@ -180,6 +175,7 @@
     left: 0;
     width: 50%;
     z-index: 2;
+   
   }
   
   .container.right_panel_active .login_container {
@@ -230,7 +226,7 @@
   }
   
   .overlay {
-    background-image: url('D:\Đồ Án 1\hafaly_fe\src\assets\animate.gif');
+    background-image: url("./animate.gif");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -297,7 +293,9 @@
     margin: 20px 0;
   }
   
-  
   .social_container a:hover {
     border: 1px solid #4bb6b7;
   }
+  
+}
+
