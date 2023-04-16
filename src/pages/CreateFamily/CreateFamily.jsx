@@ -7,6 +7,21 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Input, Button, Checkbox, Form, Upload } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
+
+function BasicAlerts() {
+    return (
+        <Alert severity="success">
+            <AlertTitle>Success</AlertTitle>
+            This is a success alert — <strong>check it out!</strong>
+        </Alert>
+    );
+}
+
+
 function CreateFamily() {
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -14,11 +29,16 @@ function CreateFamily() {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+    const [showAlert, setShowAlert] = useState(false);
+    const handleLogin = () => {
+        // Xử lý đăng nhập ở đây
+        setShowAlert(true); // Hiển thị Alert khi đăng nhập thành công
+      };
     return (
 
         <div className={styles.create_family}>
 
-            <h1>Create Your Family</h1>
+            <h2>Create Your Family</h2>
             <div className={styles.input_ct}>
                 <Form
                     name="basic"
@@ -52,40 +72,22 @@ function CreateFamily() {
                     </Form.Item>
 
                     <Form.Item
-                        label="Password"
-                        name="password"
+                        label="Family's Code"
+                        name="code"
                         rules={[
                             {
                                 required: true,
-                                message: 'Please input your password!',
+                                message: 'Please input your family code!',
                             },
                         ]}
                     >
                         <Input.Password />
                     </Form.Item>
 
-                    <Form.Item
-                        name="remember"
-                        valuePropName="checked"
-                        wrapperCol={{
-                            offset: 8,
-                            span: 16,
-                        }}
-                    >
-                        <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
 
-                    <Form.Item
-                        wrapperCol={{
-                            offset: 8,
-                            span: 16,
-                        }}
-                    >
-                        <Button type="primary" htmlType="submit">
-                            Save
-                        </Button>
-                    </Form.Item>
-                    <Form.Item label="Upload" valuePropName="fileList">
+
+
+                    <Form.Item label="Family's Imagine" valuePropName="fileList">
                         <Upload action="/upload.do" listType="picture-card">
                             <div>
                                 <PlusOutlined />
@@ -98,8 +100,21 @@ function CreateFamily() {
                                 </div>
                             </div>
                         </Upload>
-                    </Form.Item>    
+                    </Form.Item>
+                    <Form.Item
+                        wrapperCol={{
+                            offset: 8,
+                            span: 16,
+                        }}
+                    >
+                        <Button type="primary" htmlType="submit" onClick={handleLogin}>
+                            Save
+                        </Button>
+                    </Form.Item>
+
                 </Form>
+                
+
             </div>
 
 

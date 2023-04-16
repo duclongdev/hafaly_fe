@@ -12,14 +12,14 @@ import classes from "./Header.module.scss";
 import { lightBlue } from "@mui/material/colors";
 import Button from '@mui/material/Button';
 import TranslateIcon from '@mui/icons-material/Translate';
-
+import {GrLanguage} from 'react-icons/gr';
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
 
 function Header() {
   const { scrollYProgress } = useScroll();
   const navigate = useNavigate();
-
+  const [lang,setLang] =useState('En')
 
   const HandleLogin = () => {
     navigate('/login')
@@ -29,15 +29,18 @@ function Header() {
   //Translation
   const langs = [
     {
-      label: 'English',
+      label: 'En',
       key: '1',
     },
     {
-      label: 'Tiếng Việt',
+      label: 'Vi',
       key: '2',
     },
 
   ];
+  const HandleLang= () =>{
+    setLang("Vi")
+  }
 
 
   return (
@@ -74,25 +77,16 @@ function Header() {
         </ul>
       </nav>
       <div className={classes.Login_ct}>
-        <div className={classes.icon_ct}>
-          <Dropdown
-            menu={{
-              langs,
-            }}
-            trigger={['click']}
-            
-          >
-            <a onClick={(e) => e.preventDefault()}>
-              <Space style={{color:"white"}}>
-                Language
-                <DownOutlined />
-              </Space>
-            </a>
-          </Dropdown>
+        <div className={classes.lang_ct}>
+          <Button className={classes.lang_bt} onClick={HandleLang}>
+            {<GrLanguage className={classes.icon} />}
+            {lang}
+          </Button>
+          
         </div>
 
         <p>Contact</p>
-        <Button onClick={HandleLogin}>Sign In</Button>
+        <Button className={classes.login_bt} onClick={HandleLogin}>Sign In</Button>
       </div>
 
     </header>

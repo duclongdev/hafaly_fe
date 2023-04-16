@@ -61,7 +61,7 @@
       font-weight: 600;
       margin-right: 1rem;
     }
-    button {
+    .login_bt {
       padding: 0.6rem;
       padding-left: 2rem;
       padding-right: 2rem;
@@ -73,11 +73,21 @@
       background-color: #4bb6b7;
       color: black;
       text-transform: none;
-      &:hover{
+      
+      
+    }
+    .lang_bt{
+      @extend .login_bt;
+      padding: 0.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      margin-right: 1rem;
+      
+      .icon{
+        margin-right: 5px;
         
-      }
-      &:focus {
-        box-shadow: '0 0 0 0.2rem rgba(0,123,255,.5)';
       }
       
     }

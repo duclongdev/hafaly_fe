@@ -38,13 +38,7 @@ export default function Homepage() {
           </div>
           <div className={classes.main_2}>
             <div className={classes.img_ct}>
-              {/* <motion.img
-        src="src\assets\home\pexels-mikhail-nilov-6957556.jpg"
-        alt="Image 1"
-        initial={{ opacity: 0, y: -100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      /> */}
+             
               <motion.img
 
                 src="src\assets\home\Meal plan.png"

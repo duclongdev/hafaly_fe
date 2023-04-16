@@ -43,7 +43,7 @@ function Sidebar() {
     <div>
       <div className={styles.sidebar}>
         <SidebarButton
-          label={t("Tìm kiếm")}
+          label={t("Search")}
           activeIndex={activeIndex}
           index={0}
           onClick={handleButtonClick}
@@ -51,21 +51,21 @@ function Sidebar() {
           
         />
         <SidebarButton
-          label={t("Thông báo")}
+          label={t("Notification")}
           activeIndex={activeIndex}
           index={1}
           onClick={handleButtonClick}
           icon={FaBell}
         />
         <SidebarButton
-          label={t("Cài đặt")}
+          label={t("Setting")}
           activeIndex={activeIndex}
           index={2}
           onClick={handleButtonClick}
           icon={FaCog}
         />
         <SidebarButton
-          label={t("Trang chủ")}
+          label={t("HomePage")}
           activeIndex={activeIndex}
           index={3}
           onClick={handleButtonClick}
@@ -75,7 +75,7 @@ function Sidebar() {
         />
         <h1 className={styles.title}>Gia Đình</h1>
         <SidebarButton
-          label={t("Manage Family")}
+          label={t("ManageFamily")}
           activeIndex={activeIndex}
           index={4}
           onClick={handleButtonClick}
@@ -83,35 +83,35 @@ function Sidebar() {
           path={'/createfamily'}
         />
         <SidebarButton
-          label={t("Công Việc")}
+          label={t("Tasks")}
           activeIndex={activeIndex}
           index={5}
           onClick={handleButtonClick}
           icon={FaBriefcase}
         />
         <SidebarButton
-          label={t("Lịch Trình")}
+          label={t("Schedule")}
           activeIndex={activeIndex}
           index={6}
           onClick={handleButtonClick}
           icon={FaCalendarAlt}
         />
         <SidebarButton
-          label={t("Bữa Ăn")}
+          label={t("Meal's Plan")}
           activeIndex={activeIndex}
           index={7}
           onClick={handleButtonClick}
           icon={FaUtensils}
         />
         <SidebarButton
-          label={t("Bài Đăng")}
+          label={t("NewFeed")}
           activeIndex={activeIndex}
           index={8}
           onClick={handleButtonClick}
           icon={FaNewspaper}
         />
         <SidebarButton
-          label={t("Mua Sắm")}
+          label={t("Shopping")}
           activeIndex={activeIndex}
           index={9}
           onClick={handleButtonClick}
@@ -119,21 +119,21 @@ function Sidebar() {
         />
         <h1 className={styles.title}>Cá Nhân</h1>
         <SidebarButton
-          label={t("Danh Bạ")}
+          label={t("Contacts")}
           activeIndex={activeIndex}
           index={10}
           onClick={handleButtonClick}
           icon={FaAddressBook}
         />
         <SidebarButton
-          label={t("Việc cần làm")}
+          label={t("To do List")}
           activeIndex={activeIndex}
           index={11}
           onClick={handleButtonClick}
           icon={FaTasks}
         />
         <SidebarButton
-          label={t("Ghi chú")}
+          label={t("Notes")}
           activeIndex={activeIndex}
           index={12}
           onClick={handleButtonClick}

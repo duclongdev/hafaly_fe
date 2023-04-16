@@ -1,18 +1,18 @@
 {
 
     "Search":"Search",
-    "Thông báo":"Notification",
-    "Cài đặt":"Setting",
-    "Trang chủ":"HomePage",
-    "Tài Chính":"Financial",
-    "Công Việc":"Tasks",
-    "Lịch Trình":"Schedule",
-    "Bữa Ăn":"Meal's Plan",
-    "Bài Đăng":"NewFeed",
-    "Mua Sắm":"Shopping",
-    "Danh Bạ":"Contacts",
-    "Việc cần làm":"To do List",
-    "Ghi chú":"Notes"
+    "Notification":"Notification",
+    "Setting":"Setting",
+    "HomePage":"HomePage",
+    "ManageFamily":"Manage Family",
+    "Tasks":"Tasks",
+    "Schedule":"Schedule",
+    "Meal's Plan":"Meal's Plan",
+    "NewFeed":"NewFeed",
+    "Shopping":"Shopping",
+    "Contacts":"Contacts",
+    "To do List":"To do List",
+    "Notes":"Notes"
 
 
 

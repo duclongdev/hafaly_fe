@@ -2,7 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import Login_EN from './locales/en/Login.json'
 import Login_VI from './locales/vi/Login.json'
-import Sidebar_VI from './locales/en/Sidebar.json'
+import Sidebar_VI from './locales/vi/Sidebar.json'
 import Sidebar_EN from './locales/en/Sidebar.json'
 // the translations
 // (tip move them in a JSON file and import them,
