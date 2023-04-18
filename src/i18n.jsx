@@ -8,11 +8,11 @@ import Sidebar_EN from './locales/en/Sidebar.json'
 // (tip move them in a JSON file and import them,
 // or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
 const resources = {
-  en: {
+  En: {
     Login: Login_EN,
     Sidebar: Sidebar_EN
   },
-  vi: {
+  Vi: {
     Login: Login_VI,
     Sidebar: Sidebar_VI,
   }
@@ -25,7 +25,7 @@ i18n
   .init({
     resources,
     ns:['Login','Sidebar'],
-    lng: "en", // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
+    lng: localStorage.getItem('lang'), // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
     // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
     // if you're using a language detector, do not define the lng option
     

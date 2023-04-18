@@ -2,26 +2,14 @@ import React from "react";
 import styles from './Login.module.scss';
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
-
+import { Select, Space, DatePicker } from 'antd';
+import dayjs from 'dayjs';
 
 
 
 
 
 import i18n from "../../i18n";
-
-
-const items = [
-  {
-    key: '0',
-    label: 'Parrent',
-  },
-  {
-    key: '1',
-    label: 'Sibling',
-  }
-]
 
 
 
@@ -45,7 +33,39 @@ function Login() {
     setContainerClass(newClass);
   }
 
+  //Chọn giới tính
+  const [gender, Setgender] = useState('Male')
+  const Genders = [
+    {
+      key: 1,
+      value: 'Male',
+      label: 'Male'
+    },
+    {
+      key: 2,
+      value: 'Female',
+      label: 'Female'
+    },
+    {
+      key: 3,
+      value: 'Unknow',
+      label: 'Unknow'
+    },
 
+  ]
+  const handleGender = (value) => {
+    Setgender(value)
+  }
+  //Chọn ngày
+  const [dateOfBirth, setDateOfBirth] = useState()
+  const dateFormatList = ['DD/MM/YYYY'];
+  const handleDate = (value) => {
+    const birthday = new Date(value)
+    const formattedBirthDateStr = birthday.toLocaleDateString("en-GB");
+    setDateOfBirth(formattedBirthDateStr)
+    console.log(dateOfBirth);
+  }
+  //Xử lí đăng nhập, đăng ký
   const handleLogin = () => {
 
   }
@@ -66,13 +86,51 @@ function Login() {
         <div className={`${styles.form_container} ${styles.register_container}`}>
           <form action="#">
             <h1>{t("SignUp")}</h1>
-            <input type="text" placeholder={t("Username")} />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder={t("Password")} />
-            <input type="text" placeholder={t("Phonenumber")} />
-            <button>{t("SignUp")}</button>
-            <span>{t("Span")}</span>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input className={styles.form_input} type="text" placeholder={t("FirstName")} style={{ marginRight: "10px" }} />
+              <input className={styles.form_input} type="text" placeholder={t("LastName")} />
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input className={styles.form_input} type="text" placeholder={t("Phonenumber")} style={{ marginRight: "10px" }} />
 
+
+              <DatePicker style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                padding: "8px",
+                width: "100%",
+
+
+              }} defaultValue={dayjs('01/01/2023', dateFormatList[0])} format={dateFormatList}
+                onChange={handleDate}
+              />
+
+
+
+            </div>
+            <input className={styles.form_input} type="email" placeholder="Email" />
+            <input className={styles.form_input} type="password" placeholder={t("Password")} />
+            <input className={styles.form_input} type="password" placeholder={t("Re-Enter Password")} />
+
+
+            <input className={styles.form_input} type="text" placeholder={t("Address")} />
+
+
+            <Select
+              defaultValue="Male"
+              options={Genders}
+              style={{
+                width: 284,
+                borderRadius: "10px",
+                textAlign: "left",
+              }}
+              onChange={handleGender}
+
+            >
+            </Select>
+            <button>{t("SignUp")}</button>
           </form>
         </div>
 
@@ -80,15 +138,15 @@ function Login() {
           <form action="#">
             {/* <h1>Đăng Nhập</h1> */}
             <h1>{t("Login")}</h1>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder={t("Password")} />
-            
+            <input className={styles.form_input} type="email" placeholder="Email" />
+            <input className={styles.form_input} type="password" placeholder={t("Password")} />
+
 
 
 
             <div className={styles.content}>
               <div className={styles.checkbox}>
-                <input type="checkbox" name="checkbox" id="checkbox" checked={isRemember} onChange={handleCheckboxChange} />
+                <input className={styles.form_input} type="checkbox" name="checkbox" id="checkbox" checked={isRemember} onChange={handleCheckboxChange} />
                 <label>{t("Remember me")}</label>
               </div>
               <div className={styles.pass_link}>

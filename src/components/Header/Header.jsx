@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 //Component
 import { motion, useScroll } from "framer-motion"
 import { ParallaxProvider } from 'react-scroll-parallax';
+import { useTranslation } from 'react-i18next';
+import i18n from "../../i18n";
 //Router
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { publicRoutes } from '../../routes/index';
@@ -12,36 +14,47 @@ import classes from "./Header.module.scss";
 import { lightBlue } from "@mui/material/colors";
 import Button from '@mui/material/Button';
 import TranslateIcon from '@mui/icons-material/Translate';
-import {GrLanguage} from 'react-icons/gr';
+import { GrLanguage } from 'react-icons/gr';
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
+import { floatButtonPrefixCls } from "antd/es/float-button/FloatButton";
+import i18next from "i18next";
 
 function Header() {
   const { scrollYProgress } = useScroll();
-  const navigate = useNavigate();
-  const [lang,setLang] =useState('En')
 
+
+  //Router
+  const navigate = useNavigate();
   const HandleLogin = () => {
     navigate('/login')
-
-
   }
   //Translation
-  const langs = [
-    {
-      label: 'En',
-      key: '1',
-    },
-    {
-      label: 'Vi',
-      key: '2',
-    },
+  const { i18n } = useTranslation()
+  const [isVietnamese, setIsVietnamese] = useState(false);
+  const { t } = useTranslation('Header')
+  
+  const changeLanguage = () => {
 
-  ];
-  const HandleLang= () =>{
-    setLang("Vi")
+    if (!isVietnamese) {
+      
+      i18n.changeLanguage('Vi')
+      setIsVietnamese(true)
+      
+
+    }else{
+      
+      i18n.changeLanguage('En')
+      setIsVietnamese(false)
+    }
+    
+    
+    
   }
-
+  useEffect(() => {
+    localStorage.setItem('lang', isVietnamese ? 'Vi' : 'En');
+    console.log(localStorage.getItem('lang'));
+  }, [isVietnamese]);
 
   return (
     <header className={classes.header}>
@@ -59,7 +72,7 @@ function Header() {
       <nav className={classes.nav_main}>
         <ul>
           <li>
-            <a href="/">Home</a>
+            <a href="/home">Home</a>
           </li>
           <li>
             <a href="/about">About</a>
@@ -78,11 +91,11 @@ function Header() {
       </nav>
       <div className={classes.Login_ct}>
         <div className={classes.lang_ct}>
-          <Button className={classes.lang_bt} onClick={HandleLang}>
+          <Button className={classes.lang_bt} onClick={changeLanguage}>
             {<GrLanguage className={classes.icon} />}
-            {lang}
+            {isVietnamese ? 'Vi' : 'En'}
           </Button>
-          
+
         </div>
 
         <p>Contact</p>
