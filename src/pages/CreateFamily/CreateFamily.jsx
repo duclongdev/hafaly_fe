@@ -11,6 +11,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 
+import { Select, Space,DatePicker } from 'antd';
+import dayjs from 'dayjs';
 
 function BasicAlerts() {
     return (
@@ -29,11 +31,12 @@ function CreateFamily() {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+    const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY', 'DD-MM-YYYY', 'DD-MM-YY'];
     const [showAlert, setShowAlert] = useState(false);
     const handleLogin = () => {
         // Xử lý đăng nhập ở đây
         setShowAlert(true); // Hiển thị Alert khi đăng nhập thành công
-      };
+    };
     return (
 
         <div className={styles.create_family}>
@@ -101,6 +104,9 @@ function CreateFamily() {
                             </div>
                         </Upload>
                     </Form.Item>
+                    
+                       
+                    
                     <Form.Item
                         wrapperCol={{
                             offset: 8,
@@ -112,8 +118,9 @@ function CreateFamily() {
                         </Button>
                     </Form.Item>
 
+
                 </Form>
-                
+
 
             </div>
 

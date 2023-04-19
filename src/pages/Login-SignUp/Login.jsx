@@ -6,19 +6,33 @@ import UserContext from "../../utils/UserProvider";
 import { login, signUp } from "../../api/auth";
 import Cookies from "js-cookie";
 import { test } from "../../api/test";
+import React from "react";
+import styles from './Login.module.scss';
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Select, Space, DatePicker } from 'antd';
+import dayjs from 'dayjs';
+
+
+
+
 
 import i18n from "../../i18n";
 
+
 const items = [
   {
-    key: "0",
-    label: "Parrent",
+    key: '0',
+    label: 'Parrent',
   },
   {
-    key: "1",
-    label: "Sibling",
-  },
-];
+    key: '1',
+    label: 'Sibling',
+  }
+]
+
+
+
 
 function Login() {
   const { t } = useTranslation("Login");
@@ -57,6 +71,24 @@ function Login() {
     setContainerClass(newClass);
   };
 
+  //Chọn giới tính
+  const [gender, Setgender] = useState('Male')
+  const Genders = [
+    {
+      key: 1,
+      value: 'Male',
+      label: 'Male'
+    },
+    {
+      key: 2,
+      value: 'Female',
+      label: 'Female'
+    },
+    {
+      key: 3,
+      value: 'Unknow',
+      label: 'Unknow'
+    },
   const handleLogin = (event) => {
     event.preventDefault();
     Cookies.set("token", "hi");
@@ -68,6 +100,29 @@ function Login() {
         console.log(Cookies.get("token"));
       })
       .catch(() => {});
+
+  ]
+  const handleGender = (value) => {
+    Setgender(value)
+  }
+  //Chọn ngày
+  const [dateOfBirth, setDateOfBirth] = useState()
+  const dateFormatList = ['DD/MM/YYYY'];
+  const handleDate = (value) => {
+    const birthday = new Date(value)
+    const formattedBirthDateStr = birthday.toLocaleDateString("en-GB");
+    setDateOfBirth(formattedBirthDateStr)
+    console.log(dateOfBirth);
+  }
+  //Xử lí đăng nhập, đăng ký
+  const handleLogin = () => {
+
+  }
+  const handleSignUp = () => {
+
+  }
+
+
 
     // login(credentials.email, credentials.password)
     //   .then((res) => {
@@ -94,23 +149,12 @@ function Login() {
           <form onSubmit={handleSignUp}>
             <h1>{t("SignUp")}</h1>
             <input type="text" placeholder={t("Username")} />
-            <input
-              type="email"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder={t("Password")}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder={t("Phonenumber")}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-            <button type="submit">{t("SignUp")}</button>
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder={t("Password")} />
+            <input type="text" placeholder={t("Phonenumber")} />
+            <button>{t("SignUp")}</button>
             <span>{t("Span")}</span>
+
           </form>
         </div>
 
