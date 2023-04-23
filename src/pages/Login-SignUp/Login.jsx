@@ -1,38 +1,23 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import styles from "./Login.module.scss";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import UserContext from "../../utils/UserProvider";
-import { login, signUp } from "../../api/auth";
-import Cookies from "js-cookie";
-import { test } from "../../api/test";
-import React from "react";
-import styles from './Login.module.scss';
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Select, Space, DatePicker } from 'antd';
-import dayjs from 'dayjs';
-
-
-
-
+import useAuth from "../../hooks/useAuth";
+import { Select, DatePicker } from "antd";
+import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 
 import i18n from "../../i18n";
 
-
 const items = [
   {
-    key: '0',
-    label: 'Parrent',
+    key: "0",
+    label: "Parrent",
   },
   {
-    key: '1',
-    label: 'Sibling',
-  }
-]
-
-
-
+    key: "1",
+    label: "Sibling",
+  },
+];
 
 function Login() {
   const { t } = useTranslation("Login");
@@ -42,15 +27,35 @@ function Login() {
   //Kiểm tra nhớ thông tin account
   const [isRemember, setRemember] = useState(false);
 
-  const { serUser, setLoading } = useContext(UserContext);
-  const { userLogin, setUserLogin } = useState();
+  // const { setUser, setLoading } = useAuth();
+  const navigate = useNavigate();
+  const auth = useAuth();
+
+  const dateFormatList = ["DD/MM/YYYY"];
+
+  const setDateOfBirth = (value) => {
+    const birthday = new Date(value);
+    const formattedBirthDateStr = birthday.toLocaleDateString("en-GB");
+    console.log(formattedBirthDateStr);
+    setCredentials({ ...credentials, dateOfBirth: formattedBirthDateStr });
+  };
+
   const [credentials, setCredentials] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     phone: "",
     address: "",
-    gender: "",
+    gender: 1,
+    dateOfBirth: "",
   });
+  const setFirstName = (value) =>
+    setCredentials({ ...credentials, firstName: value });
+
+  const setLastName = (value) =>
+    setCredentials({ ...credentials, lastName: value });
+
   const setEmail = (value) => setCredentials({ ...credentials, email: value });
   const setPassword = (value) =>
     setCredentials({ ...credentials, password: value });
@@ -58,7 +63,12 @@ function Login() {
     setCredentials({ ...credentials, phone: value });
   const setAddress = (value) =>
     setCredentials({ ...credentials, address: value });
-  const gender = (value) => setCredentials({ ...credentials, gender: value });
+  const setGender = (value) => {
+    setCredentials({
+      ...credentials,
+      gender: value === "Male" ? 1 : value === "Female" ? 0 : 2,
+    });
+  };
 
   const handleCheckboxChange = (event) => {
     setRemember(event.target.checked);
@@ -72,72 +82,32 @@ function Login() {
   };
 
   //Chọn giới tính
-  const [gender, Setgender] = useState('Male')
+
   const Genders = [
     {
       key: 1,
-      value: 'Male',
-      label: 'Male'
+      value: "Male",
+      label: "Male",
     },
     {
       key: 2,
-      value: 'Female',
-      label: 'Female'
+      value: "Female",
+      label: "Female",
     },
     {
       key: 3,
-      value: 'Unknow',
-      label: 'Unknow'
+      value: "Unknow",
+      label: "Unknow",
     },
+  ];
   const handleLogin = (event) => {
     event.preventDefault();
-    Cookies.set("token", "hi");
-    test(
-      "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb25nQGdtYWlsLmNjb20iLCJpYXQiOjE2ODE4NzE1ODAsImV4cCI6MTY4MTg3MTU5NSwicmVmcmVzaFRva2VuSWQiOiJlMTc0MzJhZS1lMmNhLTRiMDItOTgzMS03M2U3Njk0ODI2ZmUifQ.UCrW7YeSYrQZzwykG2Eaah2If3JUCJ0BZ98wnPnCjnk"
-    )
-      .then(() => {
-        console.log("doit");
-        console.log(Cookies.get("token"));
-      })
-      .catch(() => {});
-
-  ]
-  const handleGender = (value) => {
-    Setgender(value)
-  }
-  //Chọn ngày
-  const [dateOfBirth, setDateOfBirth] = useState()
-  const dateFormatList = ['DD/MM/YYYY'];
-  const handleDate = (value) => {
-    const birthday = new Date(value)
-    const formattedBirthDateStr = birthday.toLocaleDateString("en-GB");
-    setDateOfBirth(formattedBirthDateStr)
-    console.log(dateOfBirth);
-  }
-  //Xử lí đăng nhập, đăng ký
-  const handleLogin = () => {
-
-  }
-  const handleSignUp = () => {
-
-  }
-
-
-
-    // login(credentials.email, credentials.password)
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((error) => console.log(error));
+    auth.login(credentials, () => navigate("/"));
   };
+
   const handleSignUp = (event) => {
     event.preventDefault();
-    console.log(credentials);
-    signUp(credentials)
-      .then(() => {
-        console.log("create account successfully");
-      })
-      .catch((error) => console.log(error));
+    auth.signUp(credentials, () => navigate("/"));
   };
 
   return (
@@ -148,13 +118,80 @@ function Login() {
         >
           <form onSubmit={handleSignUp}>
             <h1>{t("SignUp")}</h1>
-            <input type="text" placeholder={t("Username")} />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder={t("Password")} />
-            <input type="text" placeholder={t("Phonenumber")} />
-            <button>{t("SignUp")}</button>
-            <span>{t("Span")}</span>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input
+                className={styles.form_input}
+                type="text"
+                placeholder={t("FirstName")}
+                style={{ marginRight: "10px" }}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                className={styles.form_input}
+                type="text"
+                placeholder={t("LastName")}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input
+                className={styles.form_input}
+                type="text"
+                placeholder={t("Phonenumber")}
+                style={{ marginRight: "10px" }}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
 
+              <DatePicker
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  padding: "8px",
+                  width: "100%",
+                }}
+                defaultValue={dayjs("01/01/2023", dateFormatList[0])}
+                format={dateFormatList}
+                onChange={(e) => setDateOfBirth(e)}
+              />
+            </div>
+            <input
+              className={styles.form_input}
+              type="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              className={styles.form_input}
+              type="password"
+              placeholder={t("Password")}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              className={styles.form_input}
+              type="password"
+              placeholder={t("Re-Enter Password")}
+            />
+
+            <input
+              className={styles.form_input}
+              type="text"
+              placeholder={t("Address")}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+
+            <Select
+              defaultValue="Male"
+              options={Genders}
+              style={{
+                width: 284,
+                borderRadius: "10px",
+                textAlign: "left",
+              }}
+              onChange={(value) => setGender(value)}
+            ></Select>
+            <button>{t("SignUp")}</button>
           </form>
         </div>
 
@@ -163,21 +200,22 @@ function Login() {
             {/* <h1>Đăng Nhập</h1> */}
             <h1>{t("Login")}</h1>
             <input
+              className={styles.form_input}
               type="email"
               placeholder="Email"
-              value={credentials.email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
+              className={styles.form_input}
               type="password"
               placeholder={t("Password")}
-              value={credentials.password}
               onChange={(e) => setPassword(e.target.value)}
             />
 
             <div className={styles.content}>
               <div className={styles.checkbox}>
                 <input
+                  className={styles.form_input}
                   type="checkbox"
                   name="checkbox"
                   id="checkbox"

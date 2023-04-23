@@ -3,31 +3,48 @@ import Cookies from "js-cookie";
 const appApi = axios.create({
   baseURL: "http://localhost:8080/api/v1",
 });
+appApi.interceptors.request.use(
+  (config) => {
+    const token = Cookies.get("token");
+    if (token && !config.url.includes("/auth")) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+// Set up request interceptor to add authorization header
 appApi.interceptors.response.use(
   (response) => response,
   async (error) => {
+    const originalRequest = error.config;
     if (
-      (error.response.statusCode =
-        401 || error.response.data == "Token has expired")
+      error.response.status === 401 &&
+      !originalRequest._retry &&
+      error.response.data === "Token has expired"
     ) {
-      console.log("Token expired. Refreshing token...");
-      const accessToken = Cookies.get("accessToken");
+      const token = Cookies.get("token");
       const email = Cookies.get("email");
-      const response = await axios.post("auth/new-access-token", {
-        accessToken,
-        email,
-      });
-      if (response.statusCode === 200) {
-        const { accessToken } = response.data;
-        console.log("New access token:", accessToken);
-
-        // Update the access token in the appApi instance
-        appApi.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
+      const refreshTokenId = Cookies.get("refresh_token_id");
+      const response = await appApi.post(
+        "auth/new-access-token",
+        {
+          token,
+          email,
+          refreshTokenId,
+        },
+        {
+          headers: { Authorization: "Bearer " },
+        }
+      );
+      if (response.status === 200) {
+        const accessToken = response.data.accessToken;
+        Cookies.set("token", accessToken);
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
       }
-      // Retry the original request with the new access token
-      return appApi(error.config);
+      return appApi(originalRequest);
     }
     return Promise.reject(error);
   }

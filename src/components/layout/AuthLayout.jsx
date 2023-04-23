@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { useEffect } from "react";
-import UserContext from "../../utils/UserProvider";
+import { useAuth } from "../../utils/UserProvider";
 
 const AuthLayout = () => {
+  const { user } = useAuth();
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
-  console.log(user);
   useEffect(() => {
     if (user) {
-      navigate("/");
+      // navigate(user.role === "HOMELESS" ? "/createfamily" : "/family");
     }
   }, [user]);
 

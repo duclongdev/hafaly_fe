@@ -1,52 +1,65 @@
-import React from "react";
+import React, { useEffect, startTransition, useState } from "react";
+
 import { Routes, Route } from "react-router-dom";
-import { publicRoutes } from "./routes/index";
-import { useContext, useEffect } from "react";
-//Import Layout
+import RequiredAuth from "./auth/RequiredAuth";
+import useAuth from "./hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { lazyLoad } from "./utils/lazyLoad";
 
-import DefaultLayoutPublic from "./components/layout/DefaultLayout/DefaultLayoutPublic";
-import DefaultLayoutPrivate from "./components/layout/DefaultLayout/DefaultLayoutPrivate";
-import AuthLayout from "./components/layout/AuthLayout";
-
-import Homepage from "./pages/Homepage/Homepage";
-import Login from "./pages/Login-SignUp/Login";
-import CreateFamily from "./pages/CreateFamily/CreateFamily";
-import UserContext from "./utils/UserProvider";
+const DefaultLayoutPublic = lazyLoad(
+  import("./components/layout/DefaultLayout/DefaultLayoutPublic")
+);
+const Homepage = lazyLoad(import("./pages/Homepage/Homepage"));
+const Login = lazyLoad(import("./pages/Login-SignUp/Login"));
+const FamilyPage = lazyLoad(import("./pages/Family/FamilyPage"));
+const NotFoundPage = lazyLoad(import("./pages/NotFound/NotFoundPage"));
+const CreateFamily = lazyLoad(import("./pages/CreateFamily/CreateFamily"));
+const LoadingScreen = lazyLoad(import("./pages/loading/LoadingScreen"));
+const ContactPage = lazyLoad(import("./pages/contact/ContactPage.jsx"));
 
 function App() {
-  const { setUser, setLoading } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {}, []);
+  const auth = useAuth();
+  useEffect(() => {
+    auth.autoLogin(() => {
+      setLoading(false);
+      navigate("/");
+    });
+  }, []);
+
+  if (loading) return <LoadingScreen />;
   return (
     <Routes>
-      <Route element={<AuthLayout />}>
-        <Route path="/login" element={<Login />} />
-        {/* <Route path="/signup" element={<Signup />} />
-            <Route path="/forgetpassword" element={<ForgetPassword />} /> */}
+      <Route path="/">
+        <Route
+          index
+          element={
+            auth.user ? (
+              <RequiredAuth>
+                <FamilyPage />
+              </RequiredAuth>
+            ) : (
+              <DefaultLayoutPublic>
+                <Homepage />
+              </DefaultLayoutPublic>
+            )
+          }
+        />
       </Route>
-
+      <Route path="login" element={<Login />} />
+      <Route path="create-family" element={<CreateFamily />} />
       <Route
-        path="/"
-        element={<DefaultLayoutPublic>{<Homepage />}</DefaultLayoutPublic>}
-      />
-      <Route
-        path="/home"
-        element={<DefaultLayoutPublic>{<Homepage />}</DefaultLayoutPublic>}
-      />
-      {/* <Route
-            path="/login"
-            element={<DefaultLayoutPublic>{<Login />}</DefaultLayoutPublic>}
-          /> */}
-      <Route
-        path="/dashboard"
-        element={<DefaultLayoutPrivate></DefaultLayoutPrivate>}
-      />
-      <Route
-        path="/createfamily"
+        path="contact"
         element={
-          <DefaultLayoutPrivate>{<CreateFamily />}</DefaultLayoutPrivate>
+          <RequiredAuth>
+            <ContactPage />
+          </RequiredAuth>
         }
       />
+
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
