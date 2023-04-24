@@ -10,12 +10,10 @@ const getCode = () => {
 const create = (familyInfo) => {
   return new Promise((resolve, reject) => {
     base
-      .post("family/create", {
-        name: familyInfo.name,
-        address: familyInfo.address,
-        code: familyInfo.code,
-        phoneNumber: familyInfo.phoneNumber,
-        hostEmail: familyInfo.hostEmail,
+      .post("family/create", familyInfo, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       })
       .then((response) => resolve(response))
       .catch((error) => reject(error));

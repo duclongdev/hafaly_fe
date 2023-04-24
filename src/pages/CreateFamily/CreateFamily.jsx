@@ -60,6 +60,7 @@ function CreateTab() {
   const auth = useAuth();
   const [familyCode, setFamilyCode] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
 
   const getCode = () => {
     setIsLoading(true);
@@ -71,7 +72,14 @@ function CreateTab() {
   const onFinish = (values) => {
     values.code = familyCode;
     values.hostEmail = auth.user.email;
+    values.imageFile = imageFile;
     console.log(values);
+    const formData = new FormData();
+    formData.append("code", values.code);
+    formData.append("hostEmail", values.hostEmail);
+    formData.append("phoneNumber", values.phoneNumber);
+    formData.append("address", values.address);
+    formData.append("imageFile", values.imageFile);
     familyApi
       .create(values)
       .then((response) => {
@@ -155,7 +163,13 @@ function CreateTab() {
       </Form.Item>
 
       <Form.Item label="Family's Imagine" valuePropName="fileList">
-        <Upload action="/upload.do" listType="picture-card">
+        <Upload
+          listType="picture-card"
+          beforeUpload={(file) => {
+            setImageFile(file);
+            return false;
+          }}
+        >
           <div>
             <PlusOutlined />
             <div
