@@ -5,8 +5,8 @@ import useAuth from "../../hooks/useAuth";
 import { Select, DatePicker } from "antd";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
-
 import i18n from "../../i18n";
+import ModalLogin from "../../components/Modal/ModalLogin";
 
 const items = [
   {
@@ -111,168 +111,173 @@ function Login() {
   };
 
   return (
-    <div className={styles.login_body}>
-      <div className={containerClass} id="container">
-        <div
-          className={`${styles.form_container} ${styles.register_container}`}
-        >
-          <form onSubmit={handleSignUp}>
-            <h1>{t("SignUp")}</h1>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <input
-                className={styles.form_input}
-                type="text"
-                placeholder={t("FirstName")}
-                style={{ marginRight: "10px" }}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-              <input
-                className={styles.form_input}
-                type="text"
-                placeholder={t("LastName")}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <input
-                className={styles.form_input}
-                type="text"
-                placeholder={t("Phonenumber")}
-                style={{ marginRight: "10px" }}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-              />
-
-              <DatePicker
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
-                  padding: "8px",
-                  width: "100%",
-                }}
-                defaultValue={dayjs("01/01/2023", dateFormatList[0])}
-                format={dateFormatList}
-                onChange={(e) => setDateOfBirth(e)}
-              />
-            </div>
-            <input
-              className={styles.form_input}
-              type="email"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              className={styles.form_input}
-              type="password"
-              placeholder={t("Password")}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              className={styles.form_input}
-              type="password"
-              placeholder={t("Re-Enter Password")}
-            />
-
-            <input
-              className={styles.form_input}
-              type="text"
-              placeholder={t("Address")}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-
-            <Select
-              defaultValue="Male"
-              options={Genders}
-              style={{
-                width: 284,
-                borderRadius: "10px",
-                textAlign: "left",
-              }}
-              onChange={(value) => setGender(value)}
-            ></Select>
-            <button>{t("SignUp")}</button>
-          </form>
-        </div>
-
-        <div className={`${styles.form_container} ${styles.login_container}`}>
-          <form onSubmit={handleLogin}>
-            {/* <h1>Đăng Nhập</h1> */}
-            <h1>{t("Login")}</h1>
-            <input
-              className={styles.form_input}
-              type="email"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              className={styles.form_input}
-              type="password"
-              placeholder={t("Password")}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <div className={styles.content}>
-              <div className={styles.checkbox}>
+    <>
+      <ModalLogin />
+      <div className={styles.login_body}>
+        <div className={containerClass} id="container">
+          <div
+            className={`${styles.form_container} ${styles.register_container}`}
+          >
+            <form onSubmit={handleSignUp}>
+              <h1>{t("SignUp")}</h1>
+              <div style={{ display: "flex", alignItems: "center" }}>
                 <input
                   className={styles.form_input}
-                  type="checkbox"
-                  name="checkbox"
-                  id="checkbox"
-                  checked={isRemember}
-                  onChange={handleCheckboxChange}
+                  type="text"
+                  placeholder={t("FirstName")}
+                  style={{ marginRight: "10px" }}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
-                <label>{t("Remember me")}</label>
+                <input
+                  className={styles.form_input}
+                  type="text"
+                  placeholder={t("LastName")}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
               </div>
-              <div className={styles.pass_link}>
-                <a href="#">{t("ForgotPass")}</a>
-              </div>
-            </div>
-            <button type="submit">{t("Login")}</button>
-            <span>{t("Span")}</span>
-          </form>
-        </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <input
+                  className={styles.form_input}
+                  type="text"
+                  placeholder={t("Phonenumber")}
+                  style={{ marginRight: "10px" }}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
 
-        <div className={styles.overlay_container}>
-          <div className={styles.overlay}>
-            <div className={`${styles.overlay_panel} ${styles.overlay_left}`}>
-              <h1 className={styles.title}>
-                {t("Login_title1")}
-                <br /> {t("Login_title2")}
-              </h1>
-              <p>{t("Login_text")}</p>
-              <button
-                className={styles.ghost}
-                id="login"
-                onClick={() => setContainerClass(styles.container)}
+                <DatePicker
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    padding: "8px",
+                    width: "100%",
+                  }}
+                  defaultValue={dayjs("01/01/2023", dateFormatList[0])}
+                  format={dateFormatList}
+                  onChange={(e) => setDateOfBirth(e)}
+                />
+              </div>
+              <input
+                className={styles.form_input}
+                type="email"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                className={styles.form_input}
+                type="password"
+                placeholder={t("Password")}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <input
+                className={styles.form_input}
+                type="password"
+                placeholder={t("Re-Enter Password")}
+              />
+
+              <input
+                className={styles.form_input}
+                type="text"
+                placeholder={t("Address")}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+
+              <Select
+                defaultValue="Male"
+                options={Genders}
+                style={{
+                  width: 284,
+                  borderRadius: "10px",
+                  textAlign: "left",
+                }}
+                onChange={(value) => setGender(value)}
+              ></Select>
+              <button>{t("SignUp")}</button>
+            </form>
+          </div>
+
+          <div className={`${styles.form_container} ${styles.login_container}`}>
+            <form onSubmit={handleLogin}>
+              {/* <h1>Đăng Nhập</h1> */}
+              <h1>{t("Login")}</h1>
+              <input
+                className={styles.form_input}
+                type="email"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                className={styles.form_input}
+                type="password"
+                placeholder={t("Password")}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+
+              <div className={styles.content}>
+                <div className={styles.checkbox}>
+                  <input
+                    className={styles.form_input}
+                    type="checkbox"
+                    name="checkbox"
+                    id="checkbox"
+                    checked={isRemember}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label>{t("Remember me")}</label>
+                </div>
+                <div className={styles.pass_link}>
+                  <a href="#">{t("ForgotPass")}</a>
+                </div>
+              </div>
+              <button type="submit">{t("Login")}</button>
+              <span>{t("Span")}</span>
+            </form>
+          </div>
+
+          <div className={styles.overlay_container}>
+            <div className={styles.overlay}>
+              <div className={`${styles.overlay_panel} ${styles.overlay_left}`}>
+                <h1 className={styles.title}>
+                  {t("Login_title1")}
+                  <br /> {t("Login_title2")}
+                </h1>
+                <p>{t("Login_text")}</p>
+                <button
+                  className={styles.ghost}
+                  id="login"
+                  onClick={() => setContainerClass(styles.container)}
+                >
+                  Login
+                  <i
+                    className={`${styles.lni} ${styles.lni_arrow_left} ${styles.login}`}
+                  ></i>
+                </button>
+              </div>
+              <div
+                className={`${styles.overlay_panel} ${styles.overlay_right}`}
               >
-                Login
-                <i
-                  className={`${styles.lni} ${styles.lni_arrow_left} ${styles.login}`}
-                ></i>
-              </button>
-            </div>
-            <div className={`${styles.overlay_panel} ${styles.overlay_right}`}>
-              <h1 className={styles.title}>
-                {t("SignUp_title1")}
-                <br /> {t("SignUp_title2")}
-              </h1>
-              <p>{t("Sign_Up")}</p>
-              <button
-                className={styles.ghost}
-                id="register"
-                onClick={handleButtonClick}
-              >
-                Register
-                <i
-                  className={`${styles.lni} ${styles.lni_arrow_right} ${styles.register}`}
-                ></i>
-              </button>
+                <h1 className={styles.title}>
+                  {t("SignUp_title1")}
+                  <br /> {t("SignUp_title2")}
+                </h1>
+                <p>{t("Sign_Up")}</p>
+                <button
+                  className={styles.ghost}
+                  id="register"
+                  onClick={handleButtonClick}
+                >
+                  Register
+                  <i
+                    className={`${styles.lni} ${styles.lni_arrow_right} ${styles.register}`}
+                  ></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

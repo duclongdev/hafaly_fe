@@ -1,9 +1,8 @@
 import React from "react";
 import Lottie from "react-lottie";
-import loadingAnimation from "../../animation/loading.json";
 import styles from "./styles.module.scss";
 
-const LoadingScreen = () => {
+const Loading = () => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -14,9 +13,9 @@ const LoadingScreen = () => {
   };
   return (
     <div className={styles.overlay}>
-      <Lottie options={defaultOptions} height={300} width={1000} />
+      <Lottie options={defaultOptions} height={100} width={600} />
     </div>
   );
 };
 
-export default LoadingScreen;
+export default Loading;

@@ -1,7 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 const appApi = axios.create({
-  baseURL: "http://localhost:8080/api/v1",
+  //baseURL: "http://localhost:8080/api/v1", // localhost
+  baseURL: "https://hafalybe-production.up.railway.app/api/v1",
 });
 appApi.interceptors.request.use(
   (config) => {

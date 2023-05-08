@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import joinFamilyApi from "../../api/joinFamily";
 
 const ContactPage = () => {
-  return <div>ContactPage</div>;
+  return <div></div>;
 };
 
 export default ContactPage;

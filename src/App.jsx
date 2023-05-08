@@ -5,6 +5,7 @@ import RequiredAuth from "./auth/RequiredAuth";
 import useAuth from "./hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { lazyLoad } from "./utils/lazyLoad";
+import MenuAppBar from "./components/menu/MenuAppBar";
 
 const DefaultLayoutPublic = lazyLoad(
   import("./components/layout/DefaultLayout/DefaultLayoutPublic")
@@ -20,8 +21,8 @@ const ContactPage = lazyLoad(import("./pages/contact/ContactPage.jsx"));
 function App() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-
   const auth = useAuth();
+  console.log(auth.user);
   useEffect(() => {
     auth.autoLogin(() => {
       setLoading(false);
@@ -31,36 +32,49 @@ function App() {
 
   if (loading) return <LoadingScreen />;
   return (
-    <Routes>
-      <Route path="/">
+    <div
+      style={
+        auth.user === undefined || auth.user.role === "HOMELESS"
+          ? {}
+          : { display: "flex", flexDirection: "row" }
+      }
+    >
+      {auth.user === undefined || auth.user.role === "HOMELESS" ? (
+        <></>
+      ) : (
+        <MenuAppBar />
+      )}
+
+      <Routes>
+        <Route path="/">
+          <Route
+            index
+            element={
+              auth.user ? (
+                <RequiredAuth>
+                  <FamilyPage />
+                </RequiredAuth>
+              ) : (
+                <DefaultLayoutPublic>
+                  <Homepage />
+                </DefaultLayoutPublic>
+              )
+            }
+          />
+        </Route>
+        <Route path="login" element={<Login />} />
+        <Route path="create-family" element={<CreateFamily />} />
         <Route
-          index
+          path="contact"
           element={
-            auth.user ? (
-              <RequiredAuth>
-                <FamilyPage />
-              </RequiredAuth>
-            ) : (
-              <DefaultLayoutPublic>
-                <Homepage />
-              </DefaultLayoutPublic>
-            )
+            <RequiredAuth>
+              <ContactPage />
+            </RequiredAuth>
           }
         />
-      </Route>
-      <Route path="login" element={<Login />} />
-      <Route path="create-family" element={<CreateFamily />} />
-      <Route
-        path="contact"
-        element={
-          <RequiredAuth>
-            <ContactPage />
-          </RequiredAuth>
-        }
-      />
-
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </div>
   );
 }
 

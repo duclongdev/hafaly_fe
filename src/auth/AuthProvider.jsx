@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const signUp = (credentials, callback) => {
     authApi
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
           lastName: res.data.userInfo.lastName,
           role: res.data.userInfo.role,
         });
-
+        setIsLoading(false);
         callback();
       })
       .catch((error) => {
@@ -27,6 +28,7 @@ export const AuthProvider = ({ children }) => {
       });
   };
   const login = (credentials, callback) => {
+    setIsLoading(true);
     authApi
       .login(credentials.email, credentials.password)
       .then((res) => {
@@ -36,7 +38,9 @@ export const AuthProvider = ({ children }) => {
           firstName: res.data.userInfo.firstName,
           lastName: res.data.userInfo.lastName,
           role: res.data.userInfo.role,
+          familyId: res.data.userInfo.familyId,
         });
+        setIsLoading(false);
         callback();
       })
       .catch((error) => {
@@ -49,6 +53,7 @@ export const AuthProvider = ({ children }) => {
         //   console.error(error.response);
         // }
         console.log(error);
+        setIsLoading(false);
       });
   };
 
@@ -72,6 +77,7 @@ export const AuthProvider = ({ children }) => {
             firstName: res.data.userInfo.firstName,
             lastName: res.data.userInfo.lastName,
             role: res.data.userInfo.role,
+            familyId: res.data.userInfo.familyId,
           });
           callback();
         })
@@ -82,6 +88,13 @@ export const AuthProvider = ({ children }) => {
     callback();
   };
 
-  const value = { user, signUp, logout, login, autoLogin };
+  const value = {
+    user,
+    signUp,
+    logout,
+    login,
+    autoLogin,
+    isLoading,
+  };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

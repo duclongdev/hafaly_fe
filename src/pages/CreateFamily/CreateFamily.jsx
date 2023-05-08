@@ -9,6 +9,7 @@ import familyApi from "../../api/family";
 
 import Alert from "@mui/material/Alert";
 import useAuth from "../../hooks/useAuth";
+import joinFamilyApi from "../../api/joinFamily";
 
 function BasicAlerts() {
   return (
@@ -60,7 +61,7 @@ function CreateTab() {
   const auth = useAuth();
   const [familyCode, setFamilyCode] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState();
 
   const getCode = () => {
     setIsLoading(true);
@@ -199,6 +200,10 @@ function CreateTab() {
 
 // JoinTab component
 function JoinTab() {
+  const onFinish = (values) => {
+    console.log(values);
+    joinFamilyApi.requestJoin(values.code, values.message);
+  };
   return (
     <Form
       labelCol={{
@@ -210,10 +215,12 @@ function JoinTab() {
       style={{
         maxWidth: 600,
       }}
+      onFinish={onFinish}
+      autoComplete="off"
     >
       <Form.Item
         label="Family's Code"
-        name="familyCode"
+        name="code"
         rules={[
           {
             required: true,
@@ -222,9 +229,12 @@ function JoinTab() {
         ]}
       >
         <Space.Compact style={{ width: "100%" }}>
-          <Input defaultValue="Combine input and button" />
+          <Input />
           <Button type="primary">Submit</Button>
         </Space.Compact>
+      </Form.Item>
+      <Form.Item label="Family's Code" name="message">
+        <Input />
       </Form.Item>
       <Form.Item
         wrapperCol={{

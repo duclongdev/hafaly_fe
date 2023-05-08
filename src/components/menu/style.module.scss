@@ -1,0 +1,62 @@
+.arrowLeftBtn {
+  padding: 7px 12px 7px 12px;
+  background-color: transparent;
+  border-width: 0;
+  border-radius: 5;
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  -ms-border-radius: 5;
+  -o-border-radius: 5;
+}
+.arrowLeftBtn:hover {
+  background-color: rgba($color: #d9d9d9, $alpha: 0.6);
+  border-radius: 3px;
+  border: 1px solid #e1e4e8;
+}
+.arrowLeftBtn:active {
+  background-color: rgba($color: #d9d9d9, $alpha: 0.9);
+}
+.userInfoContainer {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+.userInfoContainer:hover {
+  background-color: rgba($color: #d9d9d9, $alpha: 0.35);
+}
+
+.menu {
+  position: relative;
+
+  &__arrow {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0;
+    margin-right: 10px;
+    transition: transform 0.3s ease-out;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__list {
+    position: absolute;
+    top: 50px;
+    left: -200px;
+    width: 200px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: left 0.3s ease-out;
+
+    &--open {
+      left: 0;
+    }
+  }
+}
