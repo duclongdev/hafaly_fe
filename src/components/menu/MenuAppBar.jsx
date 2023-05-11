@@ -1,18 +1,25 @@
-import React, { useState } from "react";
-import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
-  DoubleLeftOutlined,
-} from "@ant-design/icons";
+import React, { useState, startTransition } from "react";
+import { MailOutlined, DoubleLeftOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import useAuth from "../../hooks/useAuth";
 import styles from "./style.module.scss";
-import Bold from "../../assets/icons/Bold";
 import Search from "../../assets/icons/Search";
 import Notification from "../../assets/icons/Notification";
 import Setting from "../../assets/icons/Setting";
 import clsx from "clsx";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../../redux/menuSlice";
+import { useSelector } from "react-redux";
+import { selectMenuState, selectMenuPeekingState } from "../../redux/menuSlice";
+import { useNavigate } from "react-router-dom";
+import {
+  MeatIcon,
+  ScheduleIcon,
+  NoteIcon,
+  TaskIcon,
+  ContactIcon,
+} from "../../assets/icons";
+
 function getItem(label, key, icon, children, type) {
   return {
     key,
@@ -29,26 +36,29 @@ const items = [
     "grp",
     null,
     [
-      getItem("Search", "13", <Search />),
-      getItem("Notification", "14", <Notification />),
-      getItem("Setting", "15", <Setting />),
+      getItem("Search", "search", <Search />),
+      getItem("Notification", "notification", <Notification />),
+      getItem("Setting", "setting", <Setting />),
     ],
     "group"
   ),
-  getItem("Family", "item 1rwerqw", <MailOutlined />, [
-    getItem("Cong viec", "cv"),
-    getItem("Lichj trinh", "lichj trinh"),
-    getItem("Bua an, bua an"),
+  getItem("Family", "family", null, [
+    getItem("Task", "task", <TaskIcon />),
+    getItem("Schedule", "schedule", <ScheduleIcon />),
+    getItem("Meal", "meal", <MeatIcon />),
   ]),
-  getItem("Ca nhan", "", null, [getItem("danh ba"), getItem("ghi chu")]),
-  getItem("Thanh vien", "", null, []),
+  getItem("Personal", "", null, [
+    getItem("Contact", "contact", <ContactIcon />),
+    getItem("Note", "note", <NoteIcon />),
+  ]),
+  getItem("Thanh vien", "member", null, []),
 ];
 
-const UserInfo = ({ isOpen, setIsOpen }) => {
+const UserInfo = ({ isOpen }) => {
   const auth = useAuth();
+  const dispatch = useDispatch();
   const handleCollapsed = () => {
-    if (isOpen === false) setIsOpen(true);
-    else setIsOpen(false);
+    dispatch(toggleMenu());
   };
 
   return (
@@ -76,33 +86,43 @@ const UserInfo = ({ isOpen, setIsOpen }) => {
           alignItems: "center",
         }}
       >
-        <button className={styles.arrowLeftBtn} onClick={handleCollapsed}>
-          <DoubleLeftOutlined />
-        </button>
+        {isOpen ? (
+          <button className={styles.arrowLeftBtn} onClick={handleCollapsed}>
+            <DoubleLeftOutlined />
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
 };
 
 const MenuAppBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const isOpen = useSelector(selectMenuState);
+  const isPeeking = useSelector(selectMenuPeekingState);
+  const navigate = useNavigate();
   const onClick = (e) => {
     console.log("click ", e);
+    startTransition(() => {
+      navigate(e.key);
+    });
   };
-  const menuListClasses = clsx(styles.menu__list, {
-    [styles["menu__list--open"]]: isOpen,
+  const menu = clsx(styles.menu_container, {
+    [styles.peeking]: isPeeking,
+    [styles.menuOpen]: isOpen,
   });
 
   return (
-    <div>
-      <UserInfo isOpen={isOpen} setIsOpen={setIsOpen} />
+    <div className={menu} id="menu-container">
+      <UserInfo isOpen={isOpen} />
       <Menu
         onClick={onClick}
         defaultSelectedKeys={["1"]}
         mode="inline"
         items={items}
         inlineCollapsed={false}
-        className={menuListClasses}
+        // className={menuListClasses}
       />
     </div>
   );

@@ -1,0 +1,10 @@
+.appContainer {
+  display: flex;
+  padding: 0px;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.pageContainer {
+  flex: 1;
+  transition: all 0.3s ease-in;
+}

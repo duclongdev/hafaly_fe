@@ -1,9 +1,8 @@
-import {configureStore} from '@reduxjs/toolkit';
-
-
+import { configureStore } from "@reduxjs/toolkit";
+import menuReducer from "../menuSlice";
 
 export const store = configureStore({
-    reducer:{
-        posts: postsReducer
-    }
-})
+  reducer: {
+    menu: menuReducer,
+  },
+});
