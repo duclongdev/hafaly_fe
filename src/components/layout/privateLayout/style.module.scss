@@ -1,0 +1,16 @@
+.container {
+  position: relative;
+}
+
+.headerWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+.contentWrapper {
+  margin-top: 50px;
+  overflow-y: auto;
+  height: calc(100vh - 50px);
+}
