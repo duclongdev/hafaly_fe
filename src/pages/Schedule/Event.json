@@ -1,0 +1,34 @@
+{
+  "scheduleData": [
+    {
+      "Id": 1,
+      "Subject": "Demo 1",
+      "Location": "Space Center USA",
+      "StartTime": "2023-05-10T04:00:00.000Z",
+      "EndTime": "2023-05-10T05:30:00.000Z",
+      "Description": "",
+      "IsAllDay": false,
+      "CalendarId": 1
+    },
+    {
+      "Id": 2,
+      "Subject": "Demo 2",
+      "Location": "Newyork City",
+      "StartTime": "2023-05-11T06:30:00.000Z",
+      "EndTime": "2023-05-11T08:30:00.000Z",
+      "Description": "",
+      "IsAllDay": false,
+      "CalendarId": 1
+    },
+    {
+      "Id": 3,
+      "Subject": "Demo 3",
+      "Location": "Space Center USA",
+      "StartTime": "2023-05-12T04:00:00.000Z",
+      "EndTime": "2023-05-12T05:30:00.000Z",
+      "Description": "",
+      "IsAllDay": false,
+      "CalendarId": 1
+    }
+  ]
+}

@@ -95,6 +95,7 @@ function Sidebar() {
           index={6}
           onClick={handleButtonClick}
           icon={FaCalendarAlt}
+          path={'/schedule'}
         />
         <SidebarButton
           label={t("Meal's Plan")}
