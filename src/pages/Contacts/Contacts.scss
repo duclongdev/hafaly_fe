@@ -1,0 +1,25 @@
+@font-face {
+  font-family: SF-Pro;
+  src: local(C\Windows\Fonts\SF Pro);
+}
+
+* {
+  font-family: SF-Pro, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+ 
+  
+}
+.e-edit-dialog .e-gridform .form-group.col-md-6 {
+  width: 200px;
+}
+#ShipAddress{
+  resize: vertical;
+}
+:-ms-fullscreen, .e-grid .e-dialog
+{
+  max-width: 552px;
+}
+.control-pane{
+  padding-left: 220px;
+}
