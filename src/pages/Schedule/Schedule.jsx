@@ -95,10 +95,12 @@ function Schedule() {
   }
 
   function handleUpdateEvent(args) {
+    
     scheduleObj.eventsData = new DataManager(dataevents);
     console.log("Update oke");
     console.log(dataevents);
     CallAPI(dataevents);
+    
   }
   function importTemplateFn(data) {
     const template =
@@ -124,7 +126,7 @@ function Schedule() {
       timeBtn.innerHTML = liveTime;
     }
   }
-
+  
   function onImportClick(args) {
     scheduleObj.importICalendar(args.event.target.files[0]);
   }
@@ -514,7 +516,7 @@ function Schedule() {
                     timezone="UTC"
                     actionComplete={handleUpdateEvent}
                     dateHeaderTemplate={dateHeaderTemplate.bind(this)}
-                    eventSettings={{ dataSource: dataevents }}
+                    eventSettings={{dataSource: dataevents}}
                   >
                     <ResourcesDirective>
                       <ResourceDirective

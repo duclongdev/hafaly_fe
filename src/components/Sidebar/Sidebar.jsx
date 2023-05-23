@@ -95,6 +95,7 @@ function Sidebar() {
           index={6}
           onClick={handleButtonClick}
           icon={FaCalendarAlt}
+          path={'/calendar'}
         />
         <SidebarButton
           label={t("Meal's Plan")}
@@ -124,6 +125,7 @@ function Sidebar() {
           index={10}
           onClick={handleButtonClick}
           icon={FaAddressBook}
+          path={'/contacts'}
         />
         <SidebarButton
           label={t("To do List")}
@@ -138,6 +140,7 @@ function Sidebar() {
           index={12}
           onClick={handleButtonClick}
           icon={FaStickyNote}
+          path={'/note'}
         />
       </div>
 

@@ -1,4 +1,4 @@
-.header {
+.header_component {
   z-index: 9999;
   background-color: rgb(18, 19, 21);
   position: fixed;
@@ -15,6 +15,7 @@
     h1 {
       font-size: 25px;
       margin-left: 0.5rem;
+      
       color: #ffffff;
     }
   }
