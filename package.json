@@ -49,6 +49,7 @@
     "dayjs": "^1.11.7",
     "framer-motion": "^10.11.2",
     "i18next": "^22.4.13",
+    "joi": "^17.9.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "moment-timezone": "^0.5.43",

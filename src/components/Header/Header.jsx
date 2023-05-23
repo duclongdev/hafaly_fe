@@ -57,7 +57,7 @@ function Header() {
   }, [isVietnamese]);
 
   return (
-    <header className={classes.header}>
+    <header className={classes.header_component}>
       <div className={classes.logo}>
 
         <div className={classes.img_ct}>
