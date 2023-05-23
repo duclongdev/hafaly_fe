@@ -1,0 +1,14 @@
+@import "../../sass/color";
+
+.container {
+  padding: 20px;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  user-select: none;
+  scroll-behavior: auto;
+  overflow: scroll;
+  overflow-y: hidden;
+}
+.item {
+  display: flex;
+}

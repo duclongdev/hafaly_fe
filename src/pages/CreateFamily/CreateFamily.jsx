@@ -74,7 +74,6 @@ function CreateTab() {
     values.code = familyCode;
     values.hostEmail = auth.user.email;
     values.imageFile = imageFile;
-    console.log(values);
     const formData = new FormData();
     formData.append("code", values.code);
     formData.append("hostEmail", values.hostEmail);

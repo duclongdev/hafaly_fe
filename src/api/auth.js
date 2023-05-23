@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 import { getCookies } from "../utils/cookiesHandle";
 
 const signUp = (user) => {
-  console.log(user);
   return new Promise((resolve, reject) => {
     base
       .post("auth/register", {

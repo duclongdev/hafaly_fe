@@ -1,0 +1,44 @@
+@import "../../../sass/color";
+@import "../../../sass/font-size";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  margin-top: 10px;
+  width: 360px;
+  border: 1px $border-color solid;
+  border-radius: 10px;
+  background-color: white;
+}
+.heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.message {
+  display: flex;
+  flex-direction: row;
+}
+.divider {
+  border-top: 1px solid $border-color; /* set the border style for the top of the element */
+  margin: 10px 0;
+}
+
+.timeContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.timeItem {
+  font-size: $font-size-sm;
+}
+.title {
+  margin: 15px 0;
+}
+
+.container {
+  cursor: pointer;
+}

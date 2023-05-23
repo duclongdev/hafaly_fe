@@ -52,7 +52,6 @@ export const AuthProvider = ({ children }) => {
         //   //handle error when email or password wrong
         //   console.error(error.response);
         // }
-        console.log(error);
         setIsLoading(false);
       });
   };

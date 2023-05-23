@@ -1,0 +1,122 @@
+@import "../../sass/color.scss";
+@import "../../sass/font-size";
+
+.sotContainer {
+  display: flex;
+  flex-direction: row;
+  span {
+    margin: 8px;
+  }
+}
+.sotTitle {
+  display: flex;
+  flex-direction: column;
+  color: $text-tag-color;
+  padding-right: 50px;
+}
+.sotContent {
+  display: flex;
+  flex-direction: column;
+  color: $text-color;
+}
+.heading {
+  font-size: $font-size-lg;
+  font-weight: $heading-font-weight;
+}
+.container {
+  padding: 20px 50px;
+}
+
+.preTaskContainer {
+  border-bottom: 1px $border-color solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.preLeft {
+  display: flex;
+  flex-direction: row;
+}
+.preRight {
+  display: flex;
+  flex-direction: row;
+  span {
+    color: $text-tag-color;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.typeOfTaskContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 360px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border: 1px $border-color solid;
+  padding: 15px;
+}
+.taskBodyContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.bodyTaskContainer {
+  padding-top: 20px;
+  margin-right: 30px;
+}
+
+.typeOfTaskState {
+  background-color: $light-grey;
+  padding: 2px 7px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.typeOfTaskDot {
+  display: inline-block;
+  width: 12px; /* adjust to your desired size */
+  height: 12px; /* adjust to your desired size */
+  background-color: #ccc; /* optional - set the background color to your preference */
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.footerTaskContainer {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  width: 300px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+
+  padding: 15px;
+}
+
+.addType {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: fit-content;
+  width: 100px;
+  border-radius: 10px;
+  border: 1px $border-color solid;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.addTaskModal {
+  background-color: red;
+}

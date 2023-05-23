@@ -7,6 +7,9 @@ import ContactIcon from "./Contact";
 import NoteIcon from "./Note";
 import MeatIcon from "./Meat";
 import ScheduleIcon from "./Schedule";
+import ThreeDotHozIcon from "./ThreeDotHoz";
+import AddIcon from "./Add";
+import ThreeDotVerIcon from "./ThreeDotVer";
 
 const Icons = { DoubleChevronRightIcon, ThreeBarIcon, DoubleChevronLeftIcon };
 export {
@@ -19,5 +22,8 @@ export {
   NoteIcon,
   MeatIcon,
   ScheduleIcon,
+  ThreeDotHozIcon,
+  AddIcon,
+  ThreeDotVerIcon,
 };
 export default Icons;

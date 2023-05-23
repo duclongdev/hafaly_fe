@@ -39,7 +39,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const auth = useAuth();
 
-  console.log(auth.user);
   useEffect(() => {
     auth.autoLogin(() => {
       setLoading(false);
@@ -96,6 +95,9 @@ function App() {
                   <DefaultLayoutPublic>
                     <Homepage />
                   </DefaultLayoutPublic>
+                  // <PrivateLayout>
+                  //   <TaskPage />
+                  // </PrivateLayout>
                 )
               }
             />

@@ -44,7 +44,6 @@ function Header() {
   };
   useEffect(() => {
     localStorage.setItem("lang", isVietnamese ? "Vi" : "En");
-    console.log(localStorage.getItem("lang"));
   }, [isVietnamese]);
 
   const handleLogout = () => {};

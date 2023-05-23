@@ -103,7 +103,6 @@ const MenuAppBar = () => {
   const isPeeking = useSelector(selectMenuPeekingState);
   const navigate = useNavigate();
   const onClick = (e) => {
-    console.log("click ", e);
     startTransition(() => {
       navigate(e.key);
     });

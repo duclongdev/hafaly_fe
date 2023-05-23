@@ -1,0 +1,36 @@
+@import "../../sass/color";
+
+.container {
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.state {
+  padding: 2px 8px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.todo {
+  background-color: $light-grey;
+}
+.inProgress {
+  background-color: $light-blue;
+}
+
+.completed {
+  background-color: $light-green;
+}
+
+.left {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
