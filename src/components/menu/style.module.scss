@@ -1,0 +1,90 @@
+.arrowLeftBtn {
+  padding: 7px 12px 7px 12px;
+  background-color: transparent;
+  border-width: 0;
+  border-radius: 5;
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  -ms-border-radius: 5;
+  -o-border-radius: 5;
+}
+.arrowLeftBtn:hover {
+  background-color: rgba($color: #d9d9d9, $alpha: 0.6);
+  border-radius: 3px;
+  border: 1px solid #e1e4e8;
+}
+.arrowLeftBtn:active {
+  background-color: rgba($color: #d9d9d9, $alpha: 0.9);
+}
+.userInfoContainer {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+.userInfoContainer:hover {
+  background-color: rgba($color: #d9d9d9, $alpha: 0.35);
+}
+
+.menuContainer {
+  position: absolute;
+  top: 0;
+  width: 200px;
+}
+.open {
+  left: 0;
+  top: 10%;
+  height: 80%;
+}
+
+.menu_container {
+  position: absolute;
+  top: 10%;
+  width: 200px;
+  left: -200px;
+  z-index: 1000;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border-radius: 0px;
+  padding: 8px 0;
+}
+
+.peeking {
+  left: 0;
+  border-radius: 0px 8px 8px 0px;
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  outline: none;
+}
+
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.menuItem:last-child {
+  border-bottom: none;
+}
+
+.menuOpen {
+  top: 0;
+  height: 100%;
+  left: 0;
+}
