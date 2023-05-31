@@ -26,8 +26,8 @@ const LoadingScreen = lazyLoad(import("./pages/loading/LoadingScreen"));
 const ContactPage = lazyLoad(import("./pages/Contacts/Contacts"));
 const TaskPage = lazyLoad(import("./pages/task"));
 const SettingPage = lazyLoad(import("./pages/setting"));
-const NotePage = lazyLoad(import("./pages/note"));
-const SchedulePage = lazyLoad(import("./pages/schedule"));
+const NotePage = lazyLoad(import("./pages/Note/Note"));
+const SchedulePage = lazyLoad(import("./pages/Schedule/Schedule"));
 const MealPage = lazyLoad(import("./pages/meal"));
 
 function App() {
