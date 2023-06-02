@@ -1434,7 +1434,7 @@
     "@syncfusion/ej2-splitbuttons" "~21.2.5"
     "@syncfusion/ej2-svg-base" "~21.2.3"
 
-"@syncfusion/ej2-popups@~21.2.3", "@syncfusion/ej2-popups@~21.2.4":
+"@syncfusion/ej2-popups@21.2.4", "@syncfusion/ej2-popups@~21.2.3", "@syncfusion/ej2-popups@~21.2.4":
   version "21.2.4"
   resolved "https://registry.yarnpkg.com/@syncfusion/ej2-popups/-/ej2-popups-21.2.4.tgz#a235bbe938e0458d5af0e28831edee6d22b7371a"
   integrity sha512-M2uRhzQ8pyLbzbu2Z7WvaLqOF2N5EO+bY9fyu2ZNGGGIqyi8Htgi0B91FutH7/UKYuqJEC2GolH+svu8ANuF+A==
@@ -1501,6 +1501,15 @@
   dependencies:
     "@syncfusion/ej2-base" "~21.2.3"
     "@syncfusion/ej2-navigations" "21.2.5"
+    "@syncfusion/ej2-react-base" "~21.2.3"
+
+"@syncfusion/ej2-react-popups@^21.2.4":
+  version "21.2.4"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-popups/-/ej2-react-popups-21.2.4.tgz#1238fbe5dbda41d0f97fea2b9cf56d6871a5fe85"
+  integrity sha512-c2qqmQxlEhS4bCvN57V+PxE9NT0O00vCRt+P+JwNQ14O4lhYTEl0fjg4UciG7JSVItsA0z9VnbJjMMWN0EgGQw==
+  dependencies:
+    "@syncfusion/ej2-base" "~21.2.3"
+    "@syncfusion/ej2-popups" "21.2.4"
     "@syncfusion/ej2-react-base" "~21.2.3"
 
 "@syncfusion/ej2-react-schedule@^21.2.4":
