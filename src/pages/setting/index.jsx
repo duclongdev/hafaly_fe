@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Setting from "./components/Setting";
 import { DialogComponent } from "@syncfusion/ej2-react-popups";
-import "./index.scss"
+import "./index.scss";
 export default function index() {
   let buttons;
   const [display, setDisplay] = useState("none");
@@ -21,9 +21,7 @@ export default function index() {
   function buttonClick() {
     setStatus({ hideDialog: true });
   }
-  function dlgButtonClick() {
-    
-  }
+  function dlgButtonClick() {}
   function dialogClose() {
     setStatus({ hideDialog: false });
     setDisplay("inline-block");
@@ -34,36 +32,24 @@ export default function index() {
   }
   return (
     <div className="setting-control-pane">
-      <div
-        id="targetElement"
-        className="control-section col-lg-12 defaultDialog dialog-target"
-      >
-        <button
-          className="e-control e-btn dlgbtn"
-          style={{ display: display }}
-          onClick={buttonClick}
-          id="dialogBtn"
-        >
-          Open
-        </button>
+      
+        
         <DialogComponent
           id="defaultdialog"
           showCloseIcon={true}
           animationSettings={animationSettings}
-          width="90%"
-          target={"#targetElement"}
+          width="80%"
+          height="100%"
+          // target={"#targetElement"}
           header="Setting"
           visible={status.hideDialog}
           buttons={buttons}
           open={dialogOpen}
           close={dialogClose}
-          
         >
-          <div>
-            <Setting/>
-          </div>
+          <Setting />
         </DialogComponent>
-      </div>
+      
     </div>
   );
 }

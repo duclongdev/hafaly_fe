@@ -6,6 +6,8 @@ import "./Setting.scss";
 import { MdAccountCircle, MdLanguage } from "react-icons/md";
 import { GoSettings } from "react-icons/go";
 import { RiContactsBookUploadLine } from "react-icons/ri";
+//Page
+import MyAccount from "./MyAccount.jsx";
 function Button({ path, label, activeIndex, index, onClick, icon: Icon }) {
   return (
     <div
@@ -71,7 +73,9 @@ export default function Setting() {
       </div>
       <div className="Right_container">
         <div className="Right_item_container">
-        <div className="Header">WorkSpace</div>
+          <div className="Right_ItemsList">
+           <MyAccount/>
+          </div>
         </div>
       </div>
     </div>
