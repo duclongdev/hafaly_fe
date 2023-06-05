@@ -39,9 +39,9 @@ export default function index() {
           showCloseIcon={true}
           animationSettings={animationSettings}
           width="80%"
-          height="100%"
+          
           // target={"#targetElement"}
-          header="Setting"
+          
           visible={status.hideDialog}
           buttons={buttons}
           open={dialogOpen}

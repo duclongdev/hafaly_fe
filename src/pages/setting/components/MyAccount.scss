@@ -50,3 +50,49 @@
     color: rgb(55, 53, 47);
   }
 }
+.close_button {
+  user-select: none;
+  transition: background 0.2s ease 0s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -2px;
+  right: 11px;
+  height: 16px;
+  width: 16px;
+  padding: 0px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.1) 0px 2px 4px;
+  &:hover {
+    background-color: rgb(219, 218, 218);
+  }
+  .svg_close_button {
+    width: 10px;
+    height: 10px;
+    display: block;
+    fill: rgb(145, 145, 142);
+    flex-shrink: 0;
+    backface-visibility: hidden;
+  }
+}
+.hover_img_avatar {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  position: absolute;
+  bottom: -25px;
+  background-color: black;
+  font-weight: 600;
+  color: white;
+  width: 100%;
+  padding: 3px;
+  text-align: center;
+  font-size: 13px;
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+}
