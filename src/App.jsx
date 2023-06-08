@@ -25,14 +25,14 @@ const CreateFamily = lazyLoad(import("./pages/CreateFamily/CreateFamily"));
 const LoadingScreen = lazyLoad(import("./pages/loading/LoadingScreen"));
 const ContactPage = lazyLoad(import("./pages/Contacts/Contacts"));
 const TaskPage = lazyLoad(import("./pages/task"));
-const SettingPage = lazyLoad(import("./pages/setting"));
+const SettingPage = lazyLoad(import("./pages/setting/index"));
 const NotePage = lazyLoad(import("./pages/Note/Note"));
 const SchedulePage = lazyLoad(import("./pages/Schedule/Schedule"));
 const MealPage = lazyLoad(import("./pages/meal"));
 
 function App() {
   registerLicense(
-    "Mgo+DSMBaFt+QHJqVk1mQ1lbdF9AXnNAdFZxT2Naby8Nf1dGYl9RQXZWQlRmQXxSck1nXg==;Mgo+DSMBPh8sVXJ1S0R+X1pCaVddX2NLfUN/T2ZedV5zZCQ7a15RRnVfR11qSXdWfkdiXXZZdw==;ORg4AjUWIQA/Gnt2VFhiQlJPcEBKQmFJfFBmTGlceFRwd0U3HVdTRHRcQlhjQH5ac01hWHpeeHM=;MTk4MTUyOEAzMjMxMmUzMjJlMzNBNGpZSitDVUQrWVRDb214dU44L3o1T25POHcxQnZaUlAydmhHTWxFOTJnPQ==;MTk4MTUyOUAzMjMxMmUzMjJlMzNDUEM2ODU4dGl4ZFEzUDZBcno2VXRFSlFmNHZHdzBNL1FmeE82K2wxNm1VPQ==;NRAiBiAaIQQuGjN/V0d+Xk9HfVldVXxLflF1VWpTell6dFZWESFaRnZdQV1mSXdTf0BrW35bdnZS;MTk4MTUzMUAzMjMxMmUzMjJlMzNEeGxWNjBmUHc4cFMwSGZsTFc5WGFtYmpVcUR4TG42WmQ1bXZPM1c3NEZZPQ==;MTk4MTUzMkAzMjMxMmUzMjJlMzNKam1tM1V6bWFtekUrUk5iU0p4dkwyWUlwcCtIcFN6UVdYRlZUZ0E2L3ZZPQ==;Mgo+DSMBMAY9C3t2VFhiQlJPcEBKQmFJfFBmTGlceFRwd0U3HVdTRHRcQlhjQH5ac01hWHlfdHM=;MTk4MTUzNEAzMjMxMmUzMjJlMzNFSFlHc0FmTXNRTEpyT3FYU2R0VTk4VG1aTGdWWFhUMXVOdjNDeHk0Y3NjPQ==;MTk4MTUzNUAzMjMxMmUzMjJlMzNnNVhQOW0zYWNZTXRnZTV3NzJLZ2ZVdWJ6bDBFVmdFNEFxQ0pqb2xKZ1JZPQ==;MTk4MTUzNkAzMjMxMmUzMjJlMzNEeGxWNjBmUHc4cFMwSGZsTFc5WGFtYmpVcUR4TG42WmQ1bXZPM1c3NEZZPQ=="
+    "Mgo+DSMBaFt+QHJqXE1mQ1lbdF9AXnNAdFZxT2Naby8Nf1dGYl9RQnZXQl9mQH1adkNkUA==;Mgo+DSMBPh8sVXJ1S0R+VVpCaVddX2NLfUN/T2ZedV5zZCQ7a15RRnVfRF1rSXxWf0ZqWXdceQ==;ORg4AjUWIQA/Gnt2VFhiQlhPcEBKQmFJfFBmTGlceFRwd0U3HVdTRHRcQltjQX5Rc0xgUH9XdH0=;MjM1NjIzMEAzMjMxMmUzMDJlMzBIL0JEMHJuejV3NjZUQVhCdDRGbGZCNFZmK3dRRFJvVlBPcFlFWG9NS0JjPQ==;MjM1NjIzMUAzMjMxMmUzMDJlMzBneGdOT1M4RUorTkdxdHRYMVZNdWt3TmNvZ0QvakhVV282T3ZOVTZBR0dNPQ==;NRAiBiAaIQQuGjN/V0d+Xk9NfVldVXxLflF1VWpTell6dFZWESFaRnZdQV1lSXZTdEBqWnZfdXxc;MjM1NjIzM0AzMjMxMmUzMDJlMzBVVlBKbEVLbWpVT3haa1B5a0h3SUNwaVd6Y1lCcWx6aXAvZkhDZGdpcnFBPQ==;MjM1NjIzNEAzMjMxMmUzMDJlMzBqSEFweG9hRjQ5RUVpeXU3cVJBNk1UWnhqSGthNW5IVk1BTFFuejNndHpnPQ==;Mgo+DSMBMAY9C3t2VFhiQlhPcEBKQmFJfFBmTGlceFRwd0U3HVdTRHRcQltjQX5Rc0xgUH1bdH0=;MjM1NjIzNkAzMjMxMmUzMDJlMzBrWHNwWmhQZVIxWEc0U2NGWFMwZUZIWVhEUFZQMkVjMzU1WlIwS3VDTmcwPQ==;MjM1NjIzN0AzMjMxMmUzMDJlMzBQNFM2eUE0aFFmSlJua0lzYUgrWXVVSjBzazRmS1RnbS8wZk1NTm9nMGZvPQ==;MjM1NjIzOEAzMjMxMmUzMDJlMzBVVlBKbEVLbWpVT3haa1B5a0h3SUNwaVd6Y1lCcWx6aXAvZkhDZGdpcnFBPQ=="
   );
   const data = useSelector(selectMenuState);
 

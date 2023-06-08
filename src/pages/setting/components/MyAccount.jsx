@@ -1,35 +1,46 @@
 import React, { useState } from "react";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import { useDispatch, useSelector } from "react-redux";
+import store from "../../../../src/redux/store";
+import { AiOutlineRight } from "react-icons/ai";
 import "./MyAccount.scss";
+import ChangePasswordModal from "./ChangePasswordModal";
 export default function MyAccount() {
-  const [email, setEmail] = useState("minh123nzd@gmail.com");
-  const [username, serUsername] = useState("Le Minh");
-  const [selectedImage, setSelectedImage] = useState("srcassetsAvartar.jpg");
-  const [isHovered, setIsHovered] = useState(false);
-  function onAvatarUpload() {
-    console.log("Uploading avatar...");
-  }
-  function Avataracc() {
+  const dispatch = useDispatch();
+  const [isChangePasswordModal, setisChangePasswordModal] = useState(false);
+  function User_Photo() {
+    const [avatar, setAvatar] = useState("srcassetsAvartar.jpg");
+    const handleImageChange = (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setAvatar(reader.result);
+      };
+
+      console.log(file);
+    };
     return (
       <div>
         <div className="select-none transition duration-200 ease-in cursor-pointer relative p-0 border-0 bg-none rounded-full">
           <div className="bg-opacity-8 rounded-full border border-gray-200">
             <div className="rounded-full w-40 h-40 max-w-full max-h-full flex items-center justify-center select-none opacity-100">
               <div className="w-full h-full">
+                {/* Ảnh avatar */}
                 <img
-                
-                  className="block object-cover rounded-full w-full h-full"
-                  src="src\assets\Avartar.jpg"
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  onClick={() => setIsHovered(true)}
+                  className=" block object-cover rounded-full w-full h-full"
+                  alt="Upload"
+                  src={avatar}
+                  // onMouseEnter={() => setIsHovered(true)}
+                  // onMouseLeave={() => setIsHovered(false)}
                 />
-                {isHovered && (
+                <input
+                  type="file"
+                  onChange={handleImageChange}
+                  className="absolute top-1 w-full h-full opacity-0"
+                />
+                {/* {isHovered && (
                   <div className="hover_img_avatar">Replace photo</div>
-                )}
+                )} */}
                 {/* {isHovered=false && (
                   <div className="hover_img_avatar">
                     Delete photo
@@ -38,7 +49,12 @@ export default function MyAccount() {
               </div>
             </div>
           </div>
-          <div role="button" tabIndex={0} className="close_button">
+          <div
+            role="button"
+            tabIndex={0}
+            className="close_button"
+            onClick={() => setAvatar("")}
+          >
             <svg className="svg_close_button" viewBox="0 0 16 16">
               <path d="M3.732 11.052c-.303.308-.32.877.011 1.202.33.33.894.32 1.203.011L8 9.21l3.05 3.05c.32.325.872.32 1.197-.011a.857.857 0 00.01-1.197L9.21 8.002l3.05-3.056a.857.857 0 00-.01-1.197.857.857 0 00-1.198-.01L8 6.788 4.946 3.732c-.31-.303-.878-.32-1.203.01-.325.331-.314.895-.01 1.203l3.055 3.056-3.056 3.05z"></path>
             </svg>
@@ -47,17 +63,10 @@ export default function MyAccount() {
       </div>
     );
   }
-
-  function ChangeEmail() {
+  const ChangeEmail = () => {
+    const ChangeEmailButton = () => console.log("Change Email");
     return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          cursor: "default",
-        }}
-      >
+      <div className="flex items-center justify-between cursor-default">
         <div
           style={{
             display: "flex",
@@ -86,12 +95,13 @@ export default function MyAccount() {
               color: "rgba(55, 53, 47, 0.65)",
             }}
           >
-            {email}
+            lengocminh27042002@gmail.com
           </div>
         </div>
         <div
           role="button"
           tabIndex={0}
+          onClick={ChangeEmailButton}
           style={{
             userSelect: "none",
             transition: "background 20ms ease-in 0s",
@@ -109,11 +119,11 @@ export default function MyAccount() {
             border: "1px solid rgba(55, 53, 47, 0.16)",
           }}
         >
-          Change email
+          Change Email
         </div>
       </div>
     );
-  }
+  };
   function ChangePassword() {
     return (
       <div>
@@ -127,28 +137,51 @@ export default function MyAccount() {
               <div className="flex flex-row text-xl">Password</div>
             </div>
             <div
+              role="button"
+              onClick={() => setisChangePasswordModal(true)}
               className="text-xl leading-4"
               style={{ color: "rgba(55, 53, 47, 0.65)" }}
             >
-              Set your new password here
+              Set a new password here to login to your account
             </div>
           </div>
         </div>
       </div>
     );
   }
-  console.log(isHovered);
+  function DeleteAccount() {
+    return (
+      <div className="flex items-center justify-between cursor-default">
+        <div className="flex flex-col mr-10" role="button">
+          <div className="border-b-0 mb-2 mt-5 pb-0 text-base font-normal text-red-500">
+            <div className="flex flex-row text-xl">Delete my account</div>
+          </div>
+          <div
+            className="text-xl leading-4 "
+            style={{ color: "rgba(55, 53, 47, 0.65)" }}
+          >
+            Permanently delete the account and remove access from all
+            workspaces.
+          </div>
+        </div>
+        <div className="cursor-pointer border rounded-full">
+          {/* <ChevronRightIcon className="w-5 h-5 block fill-current text-gray-400 flex-shrink-0" /> */}
+          <AiOutlineRight className="w-7 h-7 block fill-current text-gray-400 flex-shrink-0" />
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="MyAccount_setting">
       <div className="My_profile">My profile</div>
       <div
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
-        <Avataracc />
+        <User_Photo />
         <div style={{ marginLeft: "20px", width: "250px" }}>
           <label className="preferredname">Preferred Name</label>
           <div className="textarea">
-            <input type="text" className="inputname" value={username} />
+            <input type="text" className="inputname" value="Le Minh" />
           </div>
         </div>
       </div>
@@ -161,6 +194,30 @@ export default function MyAccount() {
       <div className="div2">Account Setting</div>
       <ChangeEmail />
       <ChangePassword />
+      <ChangePasswordModal isOpen={isChangePasswordModal} />
+      <div className="flex items-center justify-center pointer-events-none w-full h-18 flex-shrink-0">
+        <div
+          role="separator"
+          className="w-full h-1 invisible border-b border-gray-400"
+        />
+      </div>
+      <div className="div2">Support</div>
+      <div className="flex flex-col mr-10">
+        <div
+          role="button"
+          className="border-b-0 mb-2 mt-0 pb-0 text-base font-medium text-gray-700"
+        >
+          <div className="flex flex-row text-xl">Log out of all devices</div>
+        </div>
+        <div
+          className="text-xl leading-4"
+          style={{ color: "rgba(55, 53, 47, 0.65)" }}
+        >
+          Log out of all other active sessions on other devices besides this
+          one.
+        </div>
+      </div>
+      <DeleteAccount />
     </div>
   );
 }
