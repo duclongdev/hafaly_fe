@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 
 import classes from "../Homepage/Homepage.module.scss";
 import Login from "../Login-SignUp/Login";
-
+import FeaturesBlocks from './FeaturesBlocks';
 //Import Layout
 import DefaultPublicLayout from "../../components/layout/DefaultLayout/DefaultLayoutPublic";
 //Import Router
@@ -50,7 +50,9 @@ export default function Homepage() {
               transition={{ duration: 1 }}
             />
           </div>
+          <FeaturesBlocks/>
         </div>
+
       </div>
     </div>
   );

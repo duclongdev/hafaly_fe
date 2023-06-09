@@ -4,9 +4,11 @@ import store from "../../../../src/redux/store";
 import { AiOutlineRight } from "react-icons/ai";
 import "./MyAccount.scss";
 import ChangePasswordModal from "./ChangePasswordModal";
+import ChangeEmailModal from "./ChangeEmailModal";
 export default function MyAccount() {
   const dispatch = useDispatch();
   const [isChangePasswordModal, setisChangePasswordModal] = useState(false);
+  const [isChangeEmailModal, setisChangeEmailModal] = useState(false);
   function User_Photo() {
     const [avatar, setAvatar] = useState("srcassetsAvartar.jpg");
     const handleImageChange = (e) => {
@@ -64,7 +66,9 @@ export default function MyAccount() {
     );
   }
   const ChangeEmail = () => {
-    const ChangeEmailButton = () => console.log("Change Email");
+    const ChangeEmailButton = () => {
+      setisChangeEmailModal(true)
+    }
     return (
       <div className="flex items-center justify-between cursor-default">
         <div
@@ -195,6 +199,7 @@ export default function MyAccount() {
       <ChangeEmail />
       <ChangePassword />
       <ChangePasswordModal isOpen={isChangePasswordModal} />
+      <ChangeEmailModal isOpen={isChangeEmailModal}/>
       <div className="flex items-center justify-center pointer-events-none w-full h-18 flex-shrink-0">
         <div
           role="separator"
