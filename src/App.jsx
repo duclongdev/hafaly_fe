@@ -1,6 +1,6 @@
 import React, { useEffect, startTransition, useState } from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,useLocation } from "react-router-dom";
 import RequiredAuth from "./auth/RequiredAuth";
 import useAuth from "./hooks/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,9 @@ import { useDispatch } from "react-redux";
 import { handlePeeking } from "./redux/menuSlice";
 import PrivateLayout from "./components/layout/privateLayout";
 import { registerLicense } from "@syncfusion/ej2-base";
+import 'aos/dist/aos.css';
 
+import AOS from 'aos';
 const DefaultLayoutPublic = lazyLoad(
   import("./components/layout/DefaultLayout/DefaultLayoutPublic")
 );
@@ -34,6 +36,20 @@ function App() {
   registerLicense(
     "Mgo+DSMBaFt+QHJqXE1mQ1lbdF9AXnNAdFZxT2Naby8Nf1dGYl9RQnZXQl9mQH1adkNkUA==;Mgo+DSMBPh8sVXJ1S0R+VVpCaVddX2NLfUN/T2ZedV5zZCQ7a15RRnVfRF1rSXxWf0ZqWXdceQ==;ORg4AjUWIQA/Gnt2VFhiQlhPcEBKQmFJfFBmTGlceFRwd0U3HVdTRHRcQltjQX5Rc0xgUH9XdH0=;MjM1NjIzMEAzMjMxMmUzMDJlMzBIL0JEMHJuejV3NjZUQVhCdDRGbGZCNFZmK3dRRFJvVlBPcFlFWG9NS0JjPQ==;MjM1NjIzMUAzMjMxMmUzMDJlMzBneGdOT1M4RUorTkdxdHRYMVZNdWt3TmNvZ0QvakhVV282T3ZOVTZBR0dNPQ==;NRAiBiAaIQQuGjN/V0d+Xk9NfVldVXxLflF1VWpTell6dFZWESFaRnZdQV1lSXZTdEBqWnZfdXxc;MjM1NjIzM0AzMjMxMmUzMDJlMzBVVlBKbEVLbWpVT3haa1B5a0h3SUNwaVd6Y1lCcWx6aXAvZkhDZGdpcnFBPQ==;MjM1NjIzNEAzMjMxMmUzMDJlMzBqSEFweG9hRjQ5RUVpeXU3cVJBNk1UWnhqSGthNW5IVk1BTFFuejNndHpnPQ==;Mgo+DSMBMAY9C3t2VFhiQlhPcEBKQmFJfFBmTGlceFRwd0U3HVdTRHRcQltjQX5Rc0xgUH1bdH0=;MjM1NjIzNkAzMjMxMmUzMDJlMzBrWHNwWmhQZVIxWEc0U2NGWFMwZUZIWVhEUFZQMkVjMzU1WlIwS3VDTmcwPQ==;MjM1NjIzN0AzMjMxMmUzMDJlMzBQNFM2eUE0aFFmSlJua0lzYUgrWXVVSjBzazRmS1RnbS8wZk1NTm9nMGZvPQ==;MjM1NjIzOEAzMjMxMmUzMDJlMzBVVlBKbEVLbWpVT3haa1B5a0h3SUNwaVd6Y1lCcWx6aXAvZkhDZGdpcnFBPQ=="
   );
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      disable: 'phone',
+      duration: 600,
+      easing: 'ease-out-sine',
+    });
+  });
+
+  useEffect(() => {
+    document.querySelector('html').style.scrollBehavior = 'auto'
+    window.scroll({ top: 0 })
+    document.querySelector('html').style.scrollBehavior = ''
+  }, [location.pathname]); // triggered on route change
   const data = useSelector(selectMenuState);
 
   const dispatch = useDispatch();
@@ -170,6 +186,7 @@ function App() {
             }
           />
           <Route path="*" element={<NotFoundPage />} />
+          
         </Routes>
       </div>
     </div>

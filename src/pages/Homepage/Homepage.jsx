@@ -3,17 +3,19 @@ import Header from "../../components/Header/Header";
 
 import classes from "../Homepage/Homepage.module.scss";
 import Login from "../Login-SignUp/Login";
-import FeaturesBlocks from './FeaturesBlocks';
+import FeaturesBlocks from "./FeaturesBlocks.jsx";
 //Import Layout
 import DefaultPublicLayout from "../../components/layout/DefaultLayout/DefaultLayoutPublic";
 //Import Router
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import FeaturesZigzag from "./FeaturesZigzag";
 
 export default function Homepage() {
   const navigate = useNavigate();
-  return (
-    <div className={classes.Homepage}>
+  function Content() {
+    return(
+      <div className={classes.Homepage} style={{backgroundColor: "#111827"}}>
       <div className={classes.main_ct}>
         <div className={classes.main_1}>
           <div className={classes.framer_1}>
@@ -50,10 +52,17 @@ export default function Homepage() {
               transition={{ duration: 1 }}
             />
           </div>
-          <FeaturesBlocks/>
         </div>
-
       </div>
+    </div>
+    )
+  }
+  return (
+   
+    <div className="antialiased bg-gray-900 text-gray-200 tracking-tight flex flex-col min-h-screen overflow-hidden">
+      <Content/>
+      <FeaturesBlocks/>
+      <FeaturesZigzag/>
     </div>
   );
 }

@@ -49,7 +49,7 @@ function Header() {
   const handleLogout = () => {};
 
   return (
-    <header className={classes.header_component}>
+    <header className={classes.header_component} style={{backgroundColor: "#111827"}}>
       <div className={classes.logo}>
         <div className={classes.img_ct}>
           <img src="src\assets\logo.svg" id="banner-logo" alt="Landing Page" />
