@@ -31,6 +31,7 @@ const SettingPage = lazyLoad(import("./pages/setting/index"));
 const NotePage = lazyLoad(import("./pages/Note/Note"));
 const SchedulePage = lazyLoad(import("./pages/Schedule/Schedule"));
 const MealPage = lazyLoad(import("./pages/meal"));
+const FamilyManagement = lazyLoad(import("./pages/FamilyManagement/FamilyManagement"));
 
 function App() {
   registerLicense(
@@ -181,6 +182,16 @@ function App() {
               <RequiredAuth>
                 <PrivateLayout>
                   <MealPage />
+                </PrivateLayout>
+              </RequiredAuth>
+            }
+          />
+          <Route
+            path="members"
+            element={
+              <RequiredAuth>
+                <PrivateLayout>
+                  <FamilyManagement />
                 </PrivateLayout>
               </RequiredAuth>
             }

@@ -51,7 +51,9 @@ const items = [
     getItem("Contact", "contact", <ContactIcon />),
     getItem("Note", "note", <NoteIcon />),
   ]),
-  getItem("Thanh vien", "member", null, []),
+  getItem("Thanh vien", "member", null, [
+    getItem("Members", "members", <ContactIcon />)
+  ]),
 ];
 
 const UserInfo = ({ isOpen }) => {
