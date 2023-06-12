@@ -39,6 +39,7 @@ const items = [
       getItem("Search", "search", <Search />),
       getItem("Notification", "notification", <Notification />),
       getItem("Setting", "setting", <Setting />),
+      getItem("Homepage", "homepage", <Setting />),
     ],
     "group"
   ),

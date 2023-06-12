@@ -4,6 +4,8 @@ import {
   GridComponent,
   ColumnsDirective,
   ColumnDirective,
+  Toolbar,
+  Inject
 } from "@syncfusion/ej2-react-grids";
 import {data} from "./data";
 import { updateSampleSection } from "./sample-base";
@@ -24,10 +26,12 @@ function ColumnTemplate() {
     );
   }
   const template = gridTemplate;
+  const toolbarOptions = ['Search'];
   return (
-    <div className="control-pane">
+    <div className="Family_Management">
+      <div className="control-pane">
       <div className="control-section">
-        <GridComponent dataSource={data} width="auto" height="359">
+        <GridComponent toolbar={toolbarOptions}  dataSource={data} width="auto" height="100%">
           <ColumnsDirective>
             <ColumnDirective
               field="memberID"
@@ -75,8 +79,10 @@ function ColumnTemplate() {
               textAlign="Center"
             />
           </ColumnsDirective>
+          <Inject services={[Toolbar]}/>
         </GridComponent>
       </div>
+    </div>
     </div>
   );
 }
