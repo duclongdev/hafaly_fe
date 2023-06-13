@@ -1,22 +1,26 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import store from "../../../../src/redux/store";
+//Redux
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setOpenChangePass,
+  setOpenEmailSetting,
+} from "../../../redux/reducers/modalSlice";
+import { setImagePath } from "../../../redux/reducers/UserAvatar";
+//
 import { AiOutlineRight } from "react-icons/ai";
 import "./MyAccount.scss";
-import ChangePasswordModal from "./ChangePasswordModal";
-import ChangeEmailModal from "./ChangeEmailModal";
 export default function MyAccount() {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isHoveredCloseBtn, setHoveredCloseBtn] = useState(false);
+  const imagePath = useSelector((state) => state.image.imagePath);
   const dispatch = useDispatch();
-  const [isChangePasswordModal, setisChangePasswordModal] = useState(false);
-  const [isChangeEmailModal, setisChangeEmailModal] = useState(false);
   function User_Photo() {
-    const [avatar, setAvatar] = useState("srcassetsAvartar.jpg");
     const handleImageChange = (e) => {
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        setAvatar(reader.result);
+        dispatch(setImagePath(reader.result));
       };
 
       console.log(file);
@@ -31,23 +35,23 @@ export default function MyAccount() {
                 <img
                   className=" block object-cover rounded-full w-full h-full"
                   alt="Upload"
-                  src={avatar}
-                  // onMouseEnter={() => setIsHovered(true)}
-                  // onMouseLeave={() => setIsHovered(false)}
+                  src={imagePath}
                 />
                 <input
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
                   type="file"
                   onChange={handleImageChange}
                   className="absolute top-1 w-full h-full opacity-0"
                 />
-                {/* {isHovered && (
+                {isHovered && (
                   <div className="hover_img_avatar">Replace photo</div>
-                )} */}
-                {/* {isHovered=false && (
+                )}
+                {isHoveredCloseBtn && (
                   <div className="hover_img_avatar">
                     Delete photo
                   </div>
-                )} */}
+                )}
               </div>
             </div>
           </div>
@@ -56,6 +60,8 @@ export default function MyAccount() {
             tabIndex={0}
             className="close_button"
             onClick={() => setAvatar("")}
+            onMouseEnter={() => setHoveredCloseBtn(true)}
+            onMouseLeave={() => setHoveredCloseBtn(false)}
           >
             <svg className="svg_close_button" viewBox="0 0 16 16">
               <path d="M3.732 11.052c-.303.308-.32.877.011 1.202.33.33.894.32 1.203.011L8 9.21l3.05 3.05c.32.325.872.32 1.197-.011a.857.857 0 00.01-1.197L9.21 8.002l3.05-3.056a.857.857 0 00-.01-1.197.857.857 0 00-1.198-.01L8 6.788 4.946 3.732c-.31-.303-.878-.32-1.203.01-.325.331-.314.895-.01 1.203l3.055 3.056-3.056 3.05z"></path>
@@ -67,8 +73,8 @@ export default function MyAccount() {
   }
   const ChangeEmail = () => {
     const ChangeEmailButton = () => {
-      setisChangeEmailModal(true)
-    }
+      dispatch(setOpenEmailSetting());
+    };
     return (
       <div className="flex items-center justify-between cursor-default">
         <div
@@ -142,7 +148,7 @@ export default function MyAccount() {
             </div>
             <div
               role="button"
-              onClick={() => setisChangePasswordModal(true)}
+              onClick={() => dispatch(setOpenChangePass())}
               className="text-xl leading-4"
               style={{ color: "rgba(55, 53, 47, 0.65)" }}
             >
@@ -198,8 +204,7 @@ export default function MyAccount() {
       <div className="div2">Account Setting</div>
       <ChangeEmail />
       <ChangePassword />
-      <ChangePasswordModal isOpen={isChangePasswordModal} />
-      <ChangeEmailModal isOpen={isChangeEmailModal}/>
+
       <div className="flex items-center justify-center pointer-events-none w-full h-18 flex-shrink-0">
         <div
           role="separator"

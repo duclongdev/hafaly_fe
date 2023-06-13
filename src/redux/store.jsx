@@ -1,21 +1,11 @@
 import { configureStore,createSlice } from '@reduxjs/toolkit'
-import eventsReducer from './reducers/eventsReducer'
-
-const initialState = {
-  avatar: []
-};
-const imageSlice = createSlice({
-  name: 'avatar',
-  initialState,
-  reducers: {
-    addImage(state, action) {
-      state.avatar.push(action.payload);
-    }
-  }
+import modalReducer from  "./reducers/modalSlice"
+import imageReducer from "./reducers/UserAvatar"
+const store = configureStore({
+  reducer: {
+    modal: modalReducer,
+    image: imageReducer,
+  },
 });
 
-export default configureStore({
-  reducer: {
-    avatar: imageSlice.reducer
-  }
-})
+export default store;

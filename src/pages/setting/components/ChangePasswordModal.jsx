@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Input } from "antd";
-export default function ChangePasswordModal({isOpen}) {
+import { useSelector, useDispatch } from 'react-redux';
+import { setCloseChangePass } from '../../../redux/reducers/modalSlice';
+export default function ChangePasswordModal() {
   const [isInputed, setInputed] = useState(false);
   const [error, setError] = useState("");
   const [newPassword, setNewPassword] = useState();
-  
+  const dispatch =useDispatch();
+  const isOpen = useSelector((state)=>state.modal.isOpenChangePass)
   const handleCloseModal = () => {
-    console.log("oke");
-    
+    dispatch(setCloseChangePass());
   };
   const checkInput = () => {
     if (newPassword == "") {

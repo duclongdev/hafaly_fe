@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Input } from "antd";
-export default function ChangeEmailModal({isOpen}) {
+import { useSelector, useDispatch } from 'react-redux';
+import { setCloseEmailSetting } from '../../../redux/reducers/modalSlice';
+export default function ChangeEmailModal() {
   const [isInputed, setInputed] = useState(false);
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(true);
   const [error, setError] = useState("")
-  
+  const dispatch =useDispatch();
+  const isOpen = useSelector((state)=>state.modal.isOpenEmailSetting)
   const handleCloseModal = () => {
     console.log("oke");
+    dispatch(setCloseEmailSetting())
     
   };
   const validateEmail = () => {
@@ -71,8 +75,7 @@ export default function ChangeEmailModal({isOpen}) {
                 Set a new email
               </div>
               <div className="font-normal text-xl text-gray-500 text-center mb-16 leading-5">
-                Use a password at least 15 letters long, or at least 8
-                characters long with both letters and numbers.
+                Please use corect form of email which contain @ letter
               </div>
               <label className="block mb-4 text-xl text-gray-500">
                 Enter a new email address

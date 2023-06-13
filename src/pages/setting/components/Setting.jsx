@@ -9,6 +9,10 @@ import { GoSettings } from "react-icons/go";
 import { RiContactsBookUploadLine } from "react-icons/ri";
 //Page
 import MyAccount from "./MyAccount.jsx";
+import ChangePasswordModal from "./ChangePasswordModal";
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { setImagePath } from "../../../redux/reducers/UserAvatar";
 function Button({ label, icon: Icon }) {
   return (
     <div
@@ -46,28 +50,10 @@ function Button({ label, icon: Icon }) {
 }
 
 export default function Setting() {
-  function Acc_infor() {
-    return (
-      <div className="flex items-center h-20 pr-6 pl-4">
-        <div className="flex row-auto">
-          <Stack>
-            <Avatar sx={{ width: 25, height: 25 }} />
-          </Stack>
-        </div>
-
-        <div className="pl-3">
-          <div className="text-xl leading-5 text-gray-800 whitespace-nowrap overflow-hidden overflow-ellipsis font-bold">
-            Le Minh
-          </div>
-          <div className="text-xl leading-4 text-gray-500 whitespace-nowrap overflow-hidden overflow-ellipsis pt-2 pb-1">
-            lengocminh27042002@gmail.com
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const dispatch = useDispatch();
+  const imagePath = useSelector((state) => state.image.imagePath);
+  
   return (
-    
     <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center pointer-events-auto opacity-100 transform translate-z-0">
       <div
         style={{
@@ -179,7 +165,7 @@ export default function Setting() {
                           >
                             <div style={{ width: "100%", height: "100%" }}>
                               <img
-                                src="src\assets\Avartar.jpg"
+                                src={imagePath}
                                 referrerPolicy="same-origin"
                                 style={{
                                   display: "block",
@@ -257,9 +243,9 @@ export default function Setting() {
           {/* //Right_Panel */}
           <div className="flex-grow relative z-10 h-full">
             <div className="flex flex-col w-full h-full bg-white ">
-                <div className="flex-grow transform translate-z-0 px-36 py-10 z-10 overflow-auto mr-0 mb-0">
-                  <MyAccount/>
-                </div>
+              <div className="flex-grow transform translate-z-0 px-36 py-10 z-10 overflow-auto mr-0 mb-0">
+                <MyAccount />
+              </div>
             </div>
           </div>
         </div>
