@@ -1,4 +1,4 @@
-import { configureStore,createSlice } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import modalReducer from  "./reducers/modalSlice"
 import imageReducer from "./reducers/UserAvatar"
 const store = configureStore({

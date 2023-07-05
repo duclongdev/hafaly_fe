@@ -16,7 +16,7 @@ const Item = ({ active, handleNav, name }) => {
       })}
       onClick={handleActive}
     >
-      <span>{name}</span>
+      <span style={{fontSize:"15px",fontWeight:"bold"}}>{name}</span>
     </div>
   );
 };

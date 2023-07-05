@@ -10,7 +10,6 @@ export default function ChangeEmailModal() {
   const dispatch =useDispatch();
   const isOpen = useSelector((state)=>state.modal.isOpenEmailSetting)
   const handleCloseModal = () => {
-    console.log("oke");
     dispatch(setCloseEmailSetting())
     
   };

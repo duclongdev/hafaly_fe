@@ -2,9 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isOpen: false,
-  isOpenSetting: false,
+  isOpenSetting: true,
   isOpenEmailSetting: false,
   isOpenChangePass: false,
+  isOpenAddDish: true,
 };
 
 const modalSlice = createSlice({
@@ -35,6 +36,12 @@ const modalSlice = createSlice({
     setCloseChangePass: (state) => {
       state.isOpenChangePass = false;
     },
+    setOpenAddDish: (state) => {
+      state.isOpenAddDish = true;
+    },
+    setCloseAddDish: (state) => {
+      state.isOpenAddDish = false;
+    },
   },
 });
 
@@ -47,6 +54,8 @@ export const {
   setCloseEmailSetting,
   setOpenChangePass,
   setCloseChangePass,
+  setOpenAddDish,
+  setCloseAddDish
 } = modalSlice.actions;
 
 export default modalSlice.reducer;

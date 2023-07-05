@@ -1,0 +1,14 @@
+.AddDish_notification {
+  position: absolute;
+  top: -100px;
+  background-color: #f1f1f1;
+  animation: slideIn 0.5s ease-in-out forwards;
+  @keyframes slideIn {
+    0% {
+      top: -50px;
+    }
+    100% {
+      top: 5px;
+    }
+  }
+}
